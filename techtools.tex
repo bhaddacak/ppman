@@ -1,0 +1,200 @@
+\chapter{Tools for technical users}
+
+I hesitated to add this chapter in the manual because very few will find the tools useful. Finally I added this because, when I think for myself, this is the information that I need to know, otherwise I have to spend time to grope for it.
+
+Tools described here are not part of the graphic user interface (GUI), but some functions can be invoked by a menu. These tools run in text mode, or command line interface (CLI). This means the users have to be familiar with console terminals, or command prompt in Windows' idiom.
+
+I will skip how to work with your terminals because there is a large variety of them. However, the idea is simple: to tell your computer to do things with commands in text. In fact, we have already seen the uses of command line when we talked about how to run the program. If you know how to use command line, running the program is a lot easier.
+
+At first, these tools are not designed to be used by users. I created the tools to facilitate the developing process. In this chapter, I will introduce only two tools, which are exposed the interface to users, i.e., DpdUtil and ScUtil.\footnote{These tools need all library modules to be present, even if some are not used, like JavaFX, for example.}
+
+\section{DpdUtil}\label{sect:dpdutil}
+
+In short, the DpdUtil is a utility to use with DPD. It has only two functions by now. When you get the DPD database and unpack it to its place, supposedly in directory \texttt{data/db/}. You can use the tool to check the database's version and its applicability. The use of DpdUtil depends on the platform you use (see the box below).
+
+\dothis{To see the help of DpdUtil, open a terminal at the program's root directory, and do this:\\
+\hspace{5mm}\bullet\ In Windows:\\
+\commandline[>]{dpdutil}\\[1mm]
+\hspace{5mm}\bullet\ In Linux/macOS:\\
+\commandline{./dpdutil.sh}
+}
+
+With the bare command, you will get the tool's help shown below. DpdUtil is designed for future extensions. At this stage, its help still looks a little confusing.
+
+{\footnotesize
+\begin{verbatim}
+Pāli Platform DPD Util CLI
+  Usage:
+    DpdUtil [<command>] <option>
+      (The abstract DpdUtil can be a launcher script,
+       such as dpdutil.sh or dpdutil.cmd which can be
+       found in the program's root directory.
+       See also Notes below.)
+  Commands:
+    <none>      Show this help
+        General options:
+        -t      Test for DPD database applicability
+        -v      Show DPD database version
+  Notes:
+    To invoke the program, the Java convention has to be used.
+    Typically, if no launcher script available, this is the way 
+    to do when you are at the program's root directory:
+    $ java -p modules -m paliplatform.dpd/paliplatform.dpd.DpdUtil
+\end{verbatim}
+}
+
+From the help, it tell us that DpdUtil is just an abstract name. The real command is wrapper scripts accommodated for two major OS families.
+
+Normally, we use DpdUtil with a command followed by options. By now the tool is just in its infancy. So, there is no command at all, just bare options.\footnote{This is quite inappropriate from an engineering point of view. It should be a command after all. Perhaps, `\texttt{show}' will be used in the future for these options. By now, I just make the tool easiest to use.} And only two options are available, \texttt{-t} and \texttt{-v}.
+
+\dothis{Once DPD database is installed in the program, do this:\\
+\hspace{5mm}\bullet\ In Windows:\\
+\commandline[>]{dpdutil -v}\\[1mm]
+\hspace{5mm}\bullet\ In Linux/macOS:\\
+\commandline{./dpdutil.sh -v}\\
+\hspace{5mm}To check the database's version\\[2mm]
+\hspace{5mm}\bullet\ In Windows:\\
+\commandline[>]{dpdutil -t}\\[1mm]
+\hspace{5mm}\bullet\ In Linux/macOS:\\
+\commandline{./dpdutil.sh -t}\\
+\hspace{5mm}To test the database's applicability
+}
+
+I show you DpdUtil first because it is really simple and small. If you understand this, the other tools will be easy because they operate by the same pattern, but more complicated.
+
+\section{ScUtil}
+
+ScUtil is the tool to deal with the data file of SuttaCentral. I had substantial uses of this during my development of its reader. To use this tool, you have to download and install the SuttaCentral data in the program first, supposedly in directory \texttt{data/text/sc/}.
+
+\dothis{To see the help of ScUtil, open a terminal at the program's root directory, and do this:\\
+\hspace{5mm}\bullet\ In Windows:\\
+\commandline[>]{scutil}\\[1mm]
+\hspace{5mm}\bullet\ In Linux/macOS:\\
+\commandline{./scutil.sh}
+}
+
+The help of ScUtil is longer as shown below because it can do a lot of things. There are four main commands available: \texttt{show}, \texttt{list}, \texttt{find}, and \texttt{save}
+
+{\footnotesize
+\begin{verbatim}
+Pāli Platform SuttaCentral Util CLI
+  Usage:
+    ScUtil <command> <option>
+      (The abstract ScUtil can be a launcher script,
+       such as scutil.sh or scutil.cmd which can be
+       found in the program's root directory.
+       See also Notes below.)
+  Commands:
+    show      Show various information
+        Show options:
+        -t <id>      Show Pāli text identified by <id>
+        -tm <id>
+                Show Pāli text using ṃ in place of ṁ
+        -c      Show character stat in Pāli texts
+        -v      Verify whether the data file available
+    list      List things
+        List options:
+        -i <nikaya>
+                List text ids where <nikaya> can be
+                vin, dn, mn, sn, an, kn, ab, or abh
+        -d      List only directories
+        -f      List all files
+        -m      List only Pāli ms files
+    find      Find certain information
+        Find options:
+        -c <ch>      Find a character in Pāli texts
+    save      Analyze and save data
+        Save options:
+        -c      Analyze character stat in Pāli texts and save
+        -h      Save Pāli text headings
+    <none>      Show this help
+  Examples:
+    1. To find how many Pāli ms files, use this (Linux/macOS):
+       $ ScUtil list -m | wc -l
+       $ ScUtil list -m | grep '/abhidhamma/' | wc -l
+    2. To save all Pāli text heads into a file, use this:
+       $ ScUtil save -h
+    3. To find whether 'f' is unexpectedly used in the texts, use this:
+       $ ScUtil find -c f
+       (This command will show at most 20 results)
+    4. To see the text of MN1, use this:
+       $ ScUtil show -t mn1
+  Notes:
+    To invoke the program, the Java convention has to be used.
+    Typically, if no launcher script available, this is the way 
+    to do when you are at the program's root directory:
+    $ java -p modules -m paliplatform.reader/paliplatform.reader.ScUtil
+\end{verbatim}
+}
+
+From now on, when you see ScUtil, replace it with the wrapper script suitable to your machine, i.e., \texttt{scutil} for Windows and \texttt{./scutil.sh} for Linux/macOS.
+
+Let us start with \texttt{show} command. The first use of this should be the verification of the data file. If the following command gives you a positive response, you can go on with other commands because the data file is available.
+
+\boxcommand{ScUtil show -v}
+
+The most useful of \texttt{show} command is to display a Pāli document. There are two options for this: \texttt{-t} and \texttt{-tm}. The former shows a text with original characters. The latter will change \texttt{ṁ} to \texttt{ṃ} to accommodate your familiarity. For example, this command shows the text of SN1.1:
+
+\boxcommand{ScUtil show -tm sn1.1}
+
+The box below simulates the result from my machine.
+
+\boxbare{
+\ttfamily\footnotesize \$ ./scutil.sh show -tm sn1.1 \\
+\ttfamily\footnotesize sn1.1:0.1 Saṃyutta Nikāya 1.1 \\
+\ttfamily\footnotesize sn1.1:0.2 1. Naḷavagga \\
+\ttfamily\footnotesize sn1.1:0.3 Oghataraṇasutta \\
+\ttfamily\footnotesize sn1.1:1.1 Evaṃ me sutaṃ— \\
+\ttfamily\footnotesize sn1.1:1.2 ekaṃ samayaṃ bhagavā sāvatthiyaṃ viharati jetavane anāthapiṇḍikassa ārāme. \\
+\ttfamily\footnotesize sn1.1:1.3 Atha kho aññatarā devatā abhikkantāya rattiyā abhikkantavaṇṇā kevalakappaṃ jetavanaṃ obhāsetvā yena bhagavā tenupasaṅkami; upasaṅkamitvā bhagavantaṃ abhivādetvā ekamantaṃ aṭṭhāsi. Ekamantaṃ ṭhitā kho sā devatā bhagavantaṃ etadavoca: \\
+\ttfamily\footnotesize sn1.1:1.4 “kathaṃ nu tvaṃ, mārisa, oghamatarī”ti? \\
+\ttfamily\footnotesize sn1.1:1.5 “Appatiṭṭhaṃ khvāhaṃ, āvuso, anāyūhaṃ oghamatarin”ti. \\
+\ttfamily\footnotesize sn1.1:1.6 “Yathākathaṃ pana tvaṃ, mārisa, appatiṭṭhaṃ anāyūhaṃ oghamatarī”ti? \\
+\ttfamily\footnotesize sn1.1:1.7 “Yadāsvāhaṃ, āvuso, santiṭṭhāmi tadāssu saṃsīdāmi; \\
+\ttfamily\footnotesize sn1.1:1.8 yadāsvāhaṃ, āvuso, āyūhāmi tadāssu nibbuyhāmi. \\
+\ttfamily\footnotesize sn1.1:1.9 Evaṃ khvāhaṃ, āvuso, appatiṭṭhaṃ anāyūhaṃ oghamatarin”ti. \\
+\ttfamily\footnotesize sn1.1:2.1 “Cirassaṃ vata passāmi, \\
+\ttfamily\footnotesize sn1.1:2.2 brāhmaṇaṃ parinibbutaṃ; \\
+\ttfamily\footnotesize sn1.1:2.3 Appatiṭṭhaṃ anāyūhaṃ, \\
+\ttfamily\footnotesize sn1.1:2.4 tiṇṇaṃ loke visattikan”ti. \\
+\ttfamily\footnotesize sn1.1:3.1 Idamavoca sā devatā. \\
+\ttfamily\footnotesize sn1.1:3.2 Samanuñño satthā ahosi. \\
+\ttfamily\footnotesize sn1.1:3.3 Atha kho sā devatā: \\
+\ttfamily\footnotesize sn1.1:3.4 “samanuñño me satthā”ti bhagavantaṃ abhivādetvā padakkhiṇaṃ katvā tatthevantaradhāyīti.
+}
+
+If you want to save the text, you can simply redirect the result to a file. As shown in the command below, the command does not display the text but create a file named \texttt{sn1-1.txt} instead.
+
+\boxcommand{ScUtil show -tm sn1.1 > sn1-1.txt}
+
+If you have a problem with the text IDs in the SuttaCentral corpus, \texttt{list} command will be helpful. The following command lists all IDs in Saṃyutta-nikāya.
+
+\boxcommand{ScUtil list -i sn}
+
+If you find the result overwhelming, you can filter further with \texttt{grep}. If you use Linux or macOS with \texttt{grep} installed, you can use this command to list all IDs in SN1.
+
+\boxcommand{./scutil.sh list -i sn | grep 'sn1$\backslash$.'}
+
+The accompaniment of \texttt{grep} with the tool is really helpful, particularly with option \texttt{-d} (to list directories), \texttt{-f} (to list files), and \texttt{-m} (to list Pāli ms files). The following command lists all Pāli files in SN1.
+
+\boxcommand{./scutil.sh list -m | grep 'sn1$\backslash$.'}
+
+If you want to sort the files as well, use this command instead.
+
+\boxcommand{./scutil.sh list -m | grep 'sn1$\backslash$.' | sort -V}
+
+You can see that if you use Linux with the tool, it can considerably enhance the functionality of the tool.
+
+When you explore the directory of SuttaCentral data (\texttt{data/ text/sc/}), apart from the data file you will see another text file named \texttt{sc-heads.txt}. This file is auto-generated, but you can create it yourselves with the following command. After that you will see the file in the current directory (the program's root).
+
+\boxcommand{ScUtil save -h}
+
+As described so far, the guidelines can help you use ScUtil effectively in common usages. But if you are a maintainer of the corpus, you may need to know about character stat analysis. This can be done by the command below. The result is a list of all characters used in the texts with their frequency. Pay attention to the lowest frequencies you may find something unusual and needed to be fixed.
+
+\boxcommand{ScUtil show -c}
+
+You can save the result to a file instead with \texttt{save -c} command. When you find an odd character and want to know where it is, try `\texttt{find -c <ch>}' command (replace <ch> with the character). I will not give you more explanations on this. If you find this useful, it is your turn to experiment with the tool.
+
+\section{Concluding remarks}
+
+This chapter has introduced you to a powerful toolset bundled with the program. Once you know the existence of the tools and you find some uses with them, you will realize the power and handiness of command line programming. When you understand how these work, you may suggest other features to the developers (only me by now). When GUI is not part of the work, programming is a lot easier, and we can do it pretty fast.

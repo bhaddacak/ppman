@@ -1,0 +1,49 @@
+\chapter{Quick guide to regular expression}\label{chap:regexp}
+
+It is probable that most users of this program know nothing about regular expression. If you are not in a computer science department, or leaning about formal language theory, it is unlikely that you come across the term. But if you use computer a lot, particular when you use programs that have advanced search functions, the chance is good that you meet it.
+
+What is it, then? Regular expression is a technical term, so it will be distracting if you ask for its meaning. To put it down to earth, regular expression is an enhancement of wildcard patterns that can make string matching more effectively.\footnote{This is my definition to make it relevant here. Applications of regular expression are vast in computer science, and lesser in linguistics. To dig further, see \url{en.wikipedia.org/wiki/Regular\_expression}.} Learning about regular expression is not easy. Many books about it have several hundred pages. So, the topic is really too big to discuss here.
+
+However, I think we do not need to know all of its functions. That is the reason I add this chapter to introduce the users this powerful technique. Once you realize its capacity, you may need to learn it more. So, in this chapter I will show you some uses of regular expression in searching. I select only easy techniques that can be applied to our Pāli search (see Table \ref{tab:regexp}). Many things not included here may or may not be used in the program.\footnote{Not every technique can be used here because regular expression itself has several implementations. Even in our program, three parser engines are used: Java (in the Editor), H2 database (in Term Lister), and Lucene (in Lucene Finder). So, a pattern used in one place may not work in others, or may need an adjustment.} You have to test them yourselves.
+
+To understand regular expression (regexp, from now on), you have to know how to use wildcards first. Basically, we use question mark (\texttt{?}) and asterisk (\texttt{*}) for this function. Technically, we call these \emph{meta-characters}---characters that represent other characters. Here, ? means any one character, and * means any number of characters including none. (These two meanings are not used in regexp.) For example, \texttt{p???} can match \pali{pana} or \pali{puna} or \pali{pitā} or whatever that starts with \pali{p} and have totally four characters long. Whereas \texttt{pi*} can match \pali{pitā} or \pali{pitaro} or anything starts with \pali{pi} including \pali{pi} itself. We can see that even a simple use of wildcards can ease you search significantly. But regexp has much more than this to offer. First, we have to forget about ? and * here because in regexp they have different meaning.
+
+\bigskip
+\begin{longtable}[c]{@{}>{\ttfamily}p{0.13\linewidth}>{\small\RaggedRight}p{0.25\linewidth}>{\ttfamily}p{0.2\linewidth}>{\RaggedRight}p{0.27\linewidth}@{}}
+\caption{Some uses of regular expression}\label{tab:regexp}\\
+\toprule
+\bfseries\rmfamily \mbox{Pattern} & \normalsize\bfseries Meaning & \bfseries\rmfamily Example & \bfseries Result \\ \midrule
+\endfirsthead
+\multicolumn{4}{c}{\tablename\ \thetable: Some uses of regular expression (contd\ldots)}\\
+\toprule
+\bfseries\rmfamily \mbox{Pattern} & \normalsize\bfseries Meaning & \bfseries\rmfamily Example & \bfseries Result \\ \midrule
+\endhead
+\bottomrule
+\ltblcontinuedbreak{4}
+\endfoot
+\bottomrule
+\endlastfoot
+%
+. \textrm{(dot)} & any character & p... & \pali{pana, puna, pitā,} and so on\footnote{A dot in regexp is equivalent to ? in the wildcards.} \\
+$\backslash$d & a digit & $\backslash$d$\backslash$d & 00, 01, \ldots99 \\
+$\backslash$D & a non-digit & $\backslash$D & anything but a digit \\
+$\backslash$s & a whitespace & kho$\backslash$spana & \pali{kho pana} \\
+$\backslash$b & a word boundary & $\backslash$biti$\backslash$b & \pali{iti} as a whole word\footnote{The word boundary is not Pāli sensitive. So, a non-English character is also counted as word boundary. For example, you may also find \pali{āiti} in this case, if there is such a word.} \\ 
+$\backslash$B & a non-word boundary & $\backslash$Bti$\backslash$b & anything ends with \pali{ti} \\ 
+$\backslash$S & \mbox{a non-whitespace} & eta$\backslash$Savoca\footnote{You may use \texttt{eta.avoca} to yield the same result, but the meaning is different. Using \texttt{$\backslash$S} stresses that there should be no space in between.} & \pali{etadavoca} \\
+{}[\ldots] & any in the class & [Tt]ena & \pali{Tena} or \pali{tena} \\
+& & dinn[oā] & \pali{dinno} or \pali{dinnā} \\
+{}[\^{}\ldots] & not in the class & dinn[\^{}oā] & \pali{dinne} \\
+? & once or not at all & i?ti & \pali{ti} or \pali{iti} \\
+{}* & \mbox{zero or more times} & i*ti & \pali{ti} or \pali{iti} or even \pali{iiti}, etc. \\
++ & \mbox{one or more times} & manas+a & \pali{manasa} or \linebreak\pali{manassa} \\
+\{n\} & exactly n times & manas\{2\}a & \pali{manassa} \\
+\{n,\} & at least n times & manas\{1,\}a & \pali{manasa} or \linebreak\pali{manassa} or even \linebreak\pali{manasssa} \\
+\{n,m\} & at least n but not more than m times & manas\{1,2\}a & \pali{manasa} or \linebreak\pali{manassa} \\
+(\ldots) & grouping & man(as)?o & \pali{mano} or \linebreak\pali{manaso} \\
+(\ldots|\ldots) & any in grouping & manas(o|sa) & \pali{manaso} or \linebreak\pali{manassa} \\
+\^{} & at the beginning & \^{}attha.* & any word starting with \pali{attha}\footnote{The symbol \^{} and \$ should be used only in term searching, like in Term Lister, because when searching in full text, the meaning of `start' and `end' is context-dependent.} \\
+\$ & at the end & .*attha\$ & any word ending with \pali{attha} \\
+\end{longtable}
+
+What you have seen in the table is just a small part of regexp that I think it can be applied to our searches. Many other things seem difficult to use with Pāli, at least in an easy way. For those who know regexp well, you may try group capturing and back references, for example, using `\texttt{(puna)p$\backslash$1ṃ}' to find `\pali{punappunaṃ}.' I find little use of this, but it can be useful in some situations.

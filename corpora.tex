@@ -1,0 +1,132 @@
+\chapter{On Pāli Text Corpora}
+
+In the recent years we can witness a kind of golden era of Pāli studies in the modern time. This happens totally outside academia, and it is driven mostly by Internet communities with a non-profitable aim in mind. Most contributors work hard with little or without pay in the spirit of Buddhism.
+
+In the early time of Pāli studies, Pāli texts were rare resources. They exist only in printed form like books, and written materials like palm leaves. To study Pāli scriptures, once we had to go to a university or a large temple's library, if not the central national library because Pāli related resources in universities and temples are really limited. 
+
+Nowadays we have several Pāli text collections in digital form freely accessible just by a few mouse clicks. The spearhead in this phenomenon is the distribution of the Chaṭṭha Saṅgāyana Tipiṭaka (CST) digitized by Vipassana Research Institute (VRI), formerly known as \emph{CSCD}.\footnote{Now available in web and offline application (\texttt{CST\,4.1}). See further at \url{tipitaka.org}. I know little on the history of this happening, but I see the story is really interesting. I hope that one day we will hear the story from those who engaged in the event.} With that data, Tipiṭaka applications running in various platforms have been available since.
+
+Another project that plays a significant role recently is \emph{SuttaCentral}.\footnote{Led by Sujato Bhikkhu, see \url{suttacentral.net}.} Apart from its different version of Pāli texts\footnote{To be precise, the Pāli version used by SuttaCentral is based on the CST with improvements, and it is called \emph{Mahāsaṅgīti Tipiṭaka Buddhavasse 2500} (World Tipiṭaka Edition in Roman Script).} with a well-organized structure, SuttaCentral also has translations in various languages. That can help students of Pāli and Buddhism considerably. 
+
+A revival of digital version of Buddha Jayanthi Tripitaka (BJT) can be seen as one of the movement. This well-structured Sinhala Pāli texts with Sinhalese translation will be a good source of comparative studies and parallel checking.
+
+As I have introduced so far, I want to assert that \textsc{Pāli\,Platform} is an essential tool for Pāli studies today because it collects the most important Pāli corpora into one place and it can work with these texts, different in structure, seamlessly. This chapter will briefly introduce the texts bundled with the program.\footnote{This will exclude the SuttaCentral corpus because the collection has to be downloaded when needed, and it is used in the original form by the program. Also better information about the corpus is already on its website.}
+
+\boxnote{New students of Pāli may wonder why we must have multiple collections of Pāli texts. Is not only one complete set enough? The very answer of this question is that no one holds absolute authority over the Pāli texts. Historically speaking, Pāli scriptures have been kept by several Theravāda traditions. So, we have multiple editions of them. Even though the texts are mostly harmonious among traditions, they can be slightly different in some points.\\
+\hspace{5mm}For a serious study of Pāli text, if you have doubt over a portion of text in one edition, it will be better that we have other editions to check against. In the past, to do this comparative study was difficult because having all editions of Pāli texts at hand was a really rare occasion. Nowadays in this digital era, it is just a few click in a competent program.
+}
+
+\section{Chaṭṭha Saṅgāyana Tipiṭaka Restructured}
+
+In previous releases of \textsc{Pāli\,Platform}, we have only one text collection, i.e., the CSCD Roman, and we use it in the original form. The CSCD as taken from \url{tipitaka.org} has several disadvantages. A marked one is the texts are fragmented into files (2,698 totally). As a result, it is difficult to make references to the texts. Sometimes, under the same name, several texts are bundled together. Moreover, the rigid numbering of file names makes hard to organize and recognize the texts.
+
+From a learner perspective, not curator, I thought it would be beneficial to students if we have a corpus of Tipiṭaka that is easy to access and refer to. So, I spent several months reorganized the CSCD into Chaṭṭha Saṅgāyana Tipiṭaka Restructured (abbreviated as CSTR in the program), targeted only texts related to the Pāli Canon and Visuddhimagga. The result is a compact collection with 203 files and recognizable names. This corpus has several advantages over other Tipiṭaka collections as we shall see in due course. One of them is the texts are nti-fixed (see the box below).
+
+One improvement of this collection recently is it synchronizes the corrections done in Chaṭṭha Saṅgāyana Tipiṭaka XML (see below). As the collection of Chaṭṭha Saṅgāyana Tipiṭaka Restructured is in use in \textsc{Pāli\,Platform\,3}, the old corpus of CSCD is now obsolete and removed.
+
+\boxnote{Why does \emph{nti-fixing} matter?\\
+\hspace{5mm}As a matter of fact, the very source of texts in CST collection is in Devanagari script. When terms are joined with \pali{iti} and marked the \pali{iti} out by a quotation mark, if the former part ending with niggahita (ṃ), it will be rendered as \pali{’nti}. For example, \pali{saṅgīti’nti}\footnote{\pali{Upehi taṃ saṅgīti’nti} (Cv\,444)} is \pali{saṅgītiṃ + iti}.\\
+\hspace{5mm}By such a way of rendition, when the text undergoes an indexing process, the term is broken down into two components, i.e., \pali{saṅgīti} and \pali{nti} in the above example.\\
+\hspace{5mm}When out of context, it is apparent that the accusative marker of \pali{saṅgītiṃ} is lost. When the term is searched, only \pali{saṅgīti} is found, not \pali{saṅgītiṃ}.\\
+\hspace{5mm}To alleviate the problem, we can move the quotation mark to the position between \pali{n} and \pali{t}, hence \pali{saṅgītin’ti}. By this treatment, when the text is indexed, we now get \pali{saṅgītin} and \pali{ti}. Then we can search for \pali{saṅgītin}, and from this we can reconstruct \pali{saṅgītiṃ} back with ease.
+}
+
+
+\section{Chaṭṭha Saṅgāyana Tipiṭaka XML}\label{sect:cst-xml}
+
+Even though CST Restructured serves students quite well for studying the Pāli canon, the official collection of CST is still essential because of its completeness. This collection of Pāli texts is mainly distributed with the program \texttt{CST\,4.1}. This program has limited use because it runs only in Windows. To make use of the data and make it more portable, I converted the base data in Devanagari to Roman script, with least contamination method (see the box below), and bundled the collection with \textsc{Pāli\,Platform\,3} named as \emph{CST4 Data}.
+
+\boxnote{About Least Contamination Method of Devanagari to Roman conversion.\\
+\hspace{5mm}The main purpose of this method is to preserve all Devanagari characters by converting them with one-by-one relation to Roman script. That is to say, when the result Roman texts are converted back to Devanagari, they will be identical to the original.\\
+\hspace{5mm}Here are technical descriptions:\\[3mm]
+\hspace{5mm}(1) Only Devanagari characters (not symbols) are converted to Roman. No capitalization is applied.
+\vskip 3mm
+\hspace{5mm}(2) Punctuation marks and symbols are visually retained as follows:\\
+\begin{compactitem}
+\item Single daṇḍa (U+0964) is converted to vertical line (U+007C).
+\item Double daṇḍa (U+0965) is converted to double vertical line (U+2016).
+\item Abbreviation sign (U+0970) is converted to middle dot (U+00B7).
+\item No full stop period is used. Dot (U+002E) appears only with numbers.
+\end{compactitem}
+\vskip 3mm
+\hspace{5mm}(3) Some rare Sanskrit vowels have awkward treatments\footnote{This is my ad hoc treatments. It is not fully satisfactory, but better than leaving Devanagari remnants on Roman texts. These two vowels make converting Roman texts in this corpus to other scripts than Devanagari incomplete. Luckily, they mostly appear in the texts of the extra group (Añña). I hope that a better solution of this issue will come up soon.} as follows:\\
+\begin{compactitem}
+\item Vowel AI (U+0910, U+0948) is converted to ē (e with macron).
+\item Vowel AU (U+0914, U+094C) is converted to ō (o with macron).
+\end{compactitem}
+}
+
+The data bundled with \texttt{CST\,4.1} has its drawback. It is unable to be fixed or updated. By this reason, the XML data of this corpus is now hosted on a Github repository\footnote{\url{github.com/vipassanatech/tipitaka-xml}} with contributors actively making corrections to the texts. This version of the collection may be called \emph{Tipitaka.org XML}. In the recent release of \textsc{Pāli\,Platform\,3}, this better corrected data of the CST is used, instead of the old one bundled with \texttt{CST\,4.1}.
+
+\boxnote{Knowledgeable users can prepare the CST4 Data to use with the program by themselves. Go to \url{github.com/bhaddacak/tipitaka-kit} and follow the instruction on the part of CST4. This includes an nti-fixing program with manual-fixing guide.
+}
+
+\section{Buddha Jayanthi Tripitaka}
+
+The BJT collection of Pāli texts was originated in Sri Lanka. It was digitized by \url{tipitaka.lk} project. Recently, a reorganization of the collection has been initiated and maintained by Path Nirvana Foundation.\footnote{\url{pathnirvana.org}} The corpus is now ready to use, but it is still undergoing some improvements.
+
+Because the texts in this collection are all in Sinhala script, they have to be converted to Roman before use. Moreover, the data also contains large amount of Sinhalese translation. This part of the data is not used by the program, so it is stripped off.\footnote{Unfortunately, footnotes of the Pāli texts in this collection are now contaminated with Sinhalese comments. These footnotes have to be removed as well.} The preparation has been done by the author, and the ready-to-use data has been bundled with the program.
+
+\boxnote{Like the CST4 Data, knowledgeable users can prepare the BJT collection to use with the program by themselves. Go to \url{github.com/bhaddacak/tipitaka-kit} and follow the instruction on the part of BJT. This includes an nti-fixing program.
+}
+
+\section{The Pali Text Society Tipiṭaka}
+
+The PTS edition of Pāli scriptures has been the most used source of the texts by academics since the dawn of Pāli studies in the West. We can find this set of texts in a library of universities that have departments teaching Buddhism and related fields. This collection has been a de facto standard of Pāli texts for a long time.
+
+Nowadays, it seems that the usefulness of this text collection is coming to an end by several reasons. First, without digital form of the texts it is really difficult to search a portion of text in the collection. This also makes the availability of the collection limited. That is to say, you cannot do a full study at home (if you do not invest in the whole set of it). You have to go to a library to get access to the texts.
+
+Second, with an archaic style of editing, the text in PTS edition is difficult to read. And the last reason I can think of is that the referencing scheme to this collection is somewhat outdated and insufficient, also confusing sometimes.
+
+Still, this corpus is important in some respects nowadays. Because it has extensive, if not universal, uses in academic works, we have to trace the texts it refers to by its own way. To read a work that refers to Pāli texts in this scheme, going through the texts in this corpus is inevitable, so to speak.
+
+Lucky us, we indeed have a digital version of the PTS scriptures, typed in by the Dhammakaya Foundation in 1989--1996. The collection is publicly available at GRETIL.\footnote{\url{gretil.sub.uni-goettingen.de/gretil.htm}} This enables us to have this corpus in \textsc{Pāli\,Platform\,3}, abbreviated as \emph{PTST}.
+
+The main use case of this old collection is to find out which portion of text is referred to by the PTS referencing scheme. For textual comparison, it can still be a good parallel source.
+
+\boxnote{The PTS texts have two formats available as follows:\\
+\hspace{5mm}(1) \emph{PTS layout} arranges the texts as we see in the printed books. This is close to the original, but not suitable for search because of hyphenations.\\
+\hspace{5mm}(2) \emph{Plain floating text layout} arranges the texts by connecting all hyphenations. This format is easier to read and suitable for search, but it does not look like the books.\\
+\caveat{Do not trust the text in this digital version too much. If your study is really serious, like doing a thesis, finding a chance to recheck with the printed edition is advisable.}
+}
+
+\section{Siam Rath Tipiṭaka}
+
+Thai version of the Pāli canon, known as \emph{Siam Rath} edition, is one of the oldest Pāli texts printed in book form.\footnote{A digital version of this text collection in Thai script can be found at \url{www.learntripitaka.com}.} This collection is somewhat outdated by its numbering system. Even in Thai universities nowadays, the use of this text collection is discouraged.\footnote{A new set of Pāli texts in Thai script is printed by Mahachulalongkorn Buddhist University (MCU). This collection has numbering system close to the CST edition of Myanmar. Now it still has no digital format available.}
+
+However, this collection can do a good enough job for text comparing. One drawback is it has no systematic method of text referencing, just using volume numbers. To find a parallel portion of text in this corpus is somehow difficult.
+
+\section{Traditional Pāli Grammar Books}
+
+I give high value to the traditional Pāli grammar books, and treat them in a particular way. Some of texts here are taken from the CST collection under \pali{Byākaraṇa gantha-saṅgaho} (or elsewhere). Some of them are converted from Thai.\footnote{Mostly from Palipage, \url{sites.google.com/view/palipage}. Some texts are missing in the CST, but available in Thai, for example Saddanīti Suttamālā. And if I see that texts in Thai script are cleaner, I preferably use that Thai version.} Most of the books in this collection are edited carefully by the author to make them easier to access and read.
+
+Here is the current list of the books.
+
+\begin{compactenum}
+\item Kaccāyanabyākaraṇa and Padarūpasiddhi
+\item Kaccāyana-dhātumañjūsā
+\item Moggallānabyākaraṇa and Payogasiddhi
+\item Moggallānapañcikāṭīkā
+\item Niruttidīpanī
+\item Saddanīti Padamālā
+\item Saddanīti Dhātumālā
+\item Saddanīti Suttamālā
+\item Abhidhānappadīpikā and its Ṭīkā
+\item Subodhālaṅkāra
+\item Subodhālaṅkāraṭīkā
+\item Vuttodaya
+\item Dhātvatthasaṅgaha
+\end{compactenum}
+
+\bigskip
+Item 1--2 are used by Kaccāyana school of Pāli grammar. The first item is a dual book. It can display two books in parallel.
+
+Item 3--5 are used by Moggallāna school. The first one in this group is also a dual book, but all the books here can be shown together. Note that Payogasiddhi has been edited by adding new running numbers to its suttas. So, it has no parallel in other collections.
+
+Item 6--8 are of Saddanīti school. The Dhātumāla has been edited by adding new running numbers to its root definitions. This book is also unique. The Suttamālā is converted from Thai script making this set of Saddanīti the most complete one.
+
+Item 9 is traditional dictionary and thesaurus. This is also a dual book.
+
+Item 10--12 are about Pāli composition and prosody.
+
+Item 13 is a comprehensive collection of roots, converted from Thai script.

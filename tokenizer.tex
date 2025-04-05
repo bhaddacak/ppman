@@ -1,0 +1,26 @@
+\chapter{Tokenizer}\label{chap:tokenizer}
+
+This is the most difficult module in the program to write. I spent more than a month to implement this alone. In a nutshell, Tokenizer is a mini version of Lucene. Why we need this if Simple Lister and Lucene Finder can do the same job?\footnote{As a matter of fact, I wrote Tokenizer before Simple Lister and Lucene Finder in the hope that I could get rid of Lucene from the program's library and reduce the database side. After I finished the module, I realized that I had made a wrong decision. I thought that after all Simple Lister is needed for its simplicity and speed and Lucene Finder is needed for its superb search function.} If you find that both modules mentioned are enough for your uses, it is not necessary to use Tokenizer. However, there are scenarios that this module is needed or helpful:
+
+\paragraph{(1) You can index custom documents in the Extra with Tokenizer} If you have your own collection and want to search or make its term list, you have to use this. By putting your documents in the Extra and add them to Tokenizer, you can get the term list and you can search for a document you are looking for.\footnote{For plain text documents, all tokens are put into the \texttt{bodytext} field.} Even though the search function in Tokenizer is not so powerful as Lucene Finder, it is enough to get the job done.
+
+\paragraph{(2) You can add any document in the collection to Tokenizer} As we have seen in Lucene Finder's options for indexing, we cannot select documents arbitrarily. There are preset groups of texts to be indexed. In Tokenizer, in contrast, we can select documents freely. Then we can search or explore the term list only in the texts we are interested in.
+
+\paragraph{(3) You can create a custom term list in Tokenizer} This is a consequence of the previous item. When you select only a text group that interests you, and make the term list out of it. You can use this list in Declension Table and Conjugation Table to check against the terms produced, alternatively to the whole term list. 
+
+\paragraph{(4) Capitalized terms are analyzed statistically in Tokenizer} If you take capitalized terms seriously, this can give you more detail on this matter than Simple Lister or Lucene Finder. It calculates the percentage of each term found as capitalized. This may look trivial to other languages, but in Pāli it is informative. You can know which terms are normally used as sentence starter. In Tokenizer, you have no option for normalizing capitalized terms, because it is always kept as such.\footnote{As a result of this implementation, I drop the calculation of terms' length from this module. For that information, use Simple Lister instead.}
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.9\linewidth]{images/tokenizer-full.png}\\
+\caption{Tokenizer window in full}
+\label{fig:tokenizer-full}
+\end{figure}
+
+Now I will explain briefly how to use Tokenizer and what else you should be aware of. First, the module is one of the tabs in the main window, which is known by other parts of the program as the `main Tokenizer.' We can open it as separate windows as many as we want, but only the main Tokenizer is the target of the addition by context menus or tool bars.
+
+This leads us to two ways of adding documents into Tokenizer: by context menus (or tool bars) and by drag-and-drop. There are three places that provide you a document list: TOC Tree, Bookmarks, and Document Finder. If you use the context menu (right-click) from these to add documents, the addition will be done in the main window's Tokenizer tab. But you can drag-and-drop freely from these three modules to any Tokenizer opened.
+
+Term filtering has the same function as that in Simple Lister, so as the field selector in Lucene Finder. Search pane is not visible by default. You have to click \faSearch\ button. You can drag-and-drop a term in the list to the search text field. A multiple-term query uses logical OR relation (unlike Lucene Finder which uses AND by default). You cannot use Lucene syntax here. Only terms in full form are accept as valid query. No special symbols are used. The search result is similar to that of Lucene Finder, with slightly different display and options.\footnote{Score calculation in Tokenizer and Lucene are different, so you should not expect the same ranking in both. For Lucene, I do not know exactly. In Tokenizer, I just simply use logarithmic TF-IDF (see Wikipedia for more information).} Figure \ref{fig:tokenizer-full} shows Tokenizer window in its full form.
+
+There are many things I have not talked about. I leave them to the users. You should explore by yourselves what else you can do. Try right-clicking here and there, and set various options to see their effect.

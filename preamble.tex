@@ -1,0 +1,106 @@
+%%=== packages used ===%%
+\usepackage[english]{babel}
+\usepackage{fontspec}
+\usepackage{url}
+\usepackage{ragged2e}
+\usepackage{rotating}
+\usepackage{array}
+\usepackage{ulem}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{paralist}
+\usepackage{amssymb}
+\usepackage[Bjornstrup]{fncychap}
+\usepackage[hyperref]{xcolor}
+\usepackage[colorlinks,linktocpage=true,plainpages=false,breaklinks=true,%
+urlcolor=darkgray,citecolor=blue,linkcolor=darkgray,filecolor=teal]{hyperref}
+%%=== set fonts ===%%
+\setmainfont{TeX Gyre Schola}
+\setsansfont{TeX Gyre Heros}[Scale=MatchLowercase]
+\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
+\newfontface\ppicons{PaliPlatformIcons.ttf}[Path=fonts/]
+\newfontface\faSix{fa-solid-900.ttf}[Path=fonts/]
+\newfontface\faSixReg{fa-regular-400.ttf}[Path=fonts/]
+%%=== commands new/renewed/define ===%%
+\newcommand{\smallindent}{\hspace{3mm}}
+\newcommand{\pali}[1]{\textit{#1}}
+\newcommand{\palibf}[1]{\textit{\bfseries #1}}
+\newcommand{\commandline}[2][\$]{{\ttfamily #1 #2}}
+\newcommand{\caveat}{{\large\faSix \symbol{"F1E2}}\ {\bfseries \textsc{Caveat:} }}
+\newcommand{\menucommand}[1]{\hspace{8mm}\bullet\ #1}
+%
+\newcommand{\dothis}[1]{%
+\begin{longtable}[c]{|p{0.9\linewidth}|}
+\hline
+\vspace{-1mm}
+{\huge\faSix \symbol{"F6E3}}\,\textbf{\textsc{Do\,this:}} #1 \\[-3mm]
+\\
+\hline
+\end{longtable}
+}
+%
+\newcommand{\boxbare}[1]{%
+\begin{longtable}[c]{|p{0.9\linewidth}|}
+\hline
+\vspace{-1mm}
+#1 \\[-3mm]
+\\
+\hline
+\end{longtable}
+}
+%
+\newcommand{\boxnote}[1]{%
+\begin{longtable}[c]{|p{0.9\linewidth}|}
+\hline
+\vspace{-1mm}
+{\huge\faSix \symbol{"F249}}\,\textbf{\textsc{Note:}} #1 \\[-3mm]
+\\
+\hline
+\end{longtable}
+}
+%
+\newcommand{\boxcaveat}[1]{%
+\begin{longtable}[c]{|p{0.9\linewidth}|}
+\hline
+\vspace{-1mm}
+{\huge\faSix \symbol{"F1E2}}\,\textbf{\textsc{Caveat:}} #1 \\[-3mm]
+\\
+\hline
+\end{longtable}
+}
+%
+\newcommand{\boxcommand}[1]{%
+\begin{longtable}[c]{|p{0.9\linewidth}|}
+\hline
+\vspace{-1mm}
+{\faSix \symbol{"F120}}\ \ttfamily #1 \\[-3mm]
+\\
+\hline
+\end{longtable}
+}
+%%=== used in longtable ===%%
+\newcommand{\ltblcontinuedbreak}[1]{%
+	\multicolumn{#1}{r}{Continued on the next page\ldots}\\
+}
+%%=== for footnotes ===%%
+\deffootnote[5mm]{0em}{1em}{%
+  \textsuperscript{\thefootnotemark}%
+}
+%%=== make equal side margins ===%%
+\setlength{\oddsidemargin}{0mm}
+\setlength{\evensidemargin}{0mm}
+%%=== set up document information ===%%
+\hypersetup{
+	pdfinfo={
+		Title={Pali Platform: The Official Manual},
+		Author={J.R. Bhaddacak},
+		Subject={Pali language},
+		Keywords={Pali;Theravada;Buddhism}
+	}
+}
+%%=== for selective build when editing ===%%
+%~ \includeonly{title,copyright,preface}
+%%==============%%
+\begin{document}
+\normalem
+\frontmatter

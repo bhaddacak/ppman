@@ -1,0 +1,140 @@
+\chapter{Digital Pāḷi Dictionary (DPD)}\label{chap:dpd}
+
+A remarkable Pāli dictionary nowadays is undoubtedly the DPD.\footnote{\url{digitalpalidictionary.github.io}, \url{dpdict.net}} This dict is so complex that we have to treat it differently. Formerly, the DPD was released only dict data that can be used with dict programs like StarDict or GoldenDict. That makes integration to the program difficult. Recently, it has been released in SQLite DB format as well. This makes the integration much easier.
+
+However, due to the massive size of the DPD data and its activeness in updating, we cannot bundle the data with the program. The inevitable solution is we have to download and process the data before use.
+
+\boxnote{When the program is started with the Internet available, URL data used for downloading is fetched and saved. Technically, the file is named \texttt{pp3urls.properties}. If this file already exists, a newer one is not downloaded. To make the URL data up-to-date, you have to use this menu command:\\
+\menucommand{File > {\faSix \symbol{"F021}} Update online info}
+}
+
+\section{Downloading DPD}
+
+The easiest way to get the DPD data is using the internal DPD downloader/installer invoked by menu DPD > {\faSix \symbol{"F381}} Download DPD database. If you have updated online info as mentioned above and launch the downloader, a window that looks similar to that in Figure \ref{fig:dpd-downloader} will pop up.
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.6\linewidth]{images/dpd-downloader.png}\\
+\caption{DPD Downloader}
+\label{fig:dpd-downloader}
+\end{figure}
+
+If you open this downloader before you update online data, before you continue you should press Refresh button to make the URL data updated. What you have to do next is just hit the Start button and wait. The size of the file downloaded is not so big (around 150 MB), but the unpacking process may take time. The unpacked size of the database is around 2 GB. Please wait until the unpacking is completely finished.
+
+\boxnote{If you just want to download the DPD data into the program's cache without installation, make the option {\faSixReg \symbol{"F0C8}} \emph{Install/unpack} unchecked.\\
+\hspace{5mm}If you want to install an existing downloaded file in the cache without downloading a new one, make the option {\faSixReg \symbol{"F14A}} \emph{Skip download if in cache} checked and {\faSixReg \symbol{"F14A}} \emph{Install/unpack} checked.
+}
+
+\section{Using DPD}
+
+Just downloading the DPD database is not enough for the program to use the data effectively. Only some data are available, such as Roots, which read the database directly. To make use of the whole data, you have to process it further for both groups of data: dictionary and deconstructor.
+
+\subsection{Dictionary}
+
+The dictionary entries of DPD are now more than 400,000 items available to search (the real head words that have definitions are around 80,000). To use this data efficiently, we have to optimize it by creating a new database with more streamlined tables. This database is called \texttt{PP-DPD}. Before you can do this, you have to open DPD Dictionary window first.
+
+\dothis{To open DPD Dictionary window, press {\ppicons D}\ button in the main tool bar, or use this menu:\\
+\menucommand{DPD > {\ppicons D}\ Dictionary}
+}
+
+Once you get DPD Dictionary window, the first thing to do is to generate tables by pressing {\faSix \symbol{"F7D9}} Generate button. The process can take some time. After it is done, now you can enter a word to search. Moreover, after the creation the MDPD in Dictionaries will be also available.
+
+\boxnote{After the {\faSix \symbol{"F7D9}} Generate button is pressed to create DPD related tables, the Mini-DPD (MDPD) will be also available in Dictionaries window.}
+
+Figure \ref{fig:dpd-dictionary} shows an example result from one searching. The search is always incremental, so it needs time for the first letter's results to be retrived.
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.9\linewidth]{images/dpd-dictionary.png}\\
+\caption{DPD Dictionary window}
+\label{fig:dpd-dictionary}
+\end{figure}
+
+If you have ever seen a search result of DPD in its web (\url{dpdict.net}) or in dict programs, you will feel unfamiliar but relieved here. Unnecessary information is screened out, and the display is made clean and simple. This can make you more focused on what is important, less distracted. For the full information of DPD entries, please use your dict programs or use the web version.
+
+\boxnote{There are two modes of searching: search from term start and search within term. The option can be set by pressing {\faSix \symbol{"F560}} button. There are also some other options here. Please learn by doing.\\
+\hspace{5mm}Another option that can affect the search performance is the maximum results (shown as a number, e.g., 500). Using a great number retards the search.\\
+\hspace{5mm}The user can add search results from Deconstructor table (see below), if available, by using {\faSix \symbol{"F6E3}} toggle button.
+}
+
+\subsection{Deconstructor}
+
+Another interesting feature of DPD is the deconstructor, a dictionary of compounds (\pali{samāsa}) and joined words (\pali{sandhi}). Now the entries of this list are around 850,000 items. To use this dictionary, you have to open the deconstructor window first, by menu DPD > {\faSix \symbol{"F6E3}} Deconstructor.
+
+\dothis{To open DPD Deconstructor window, use this menu:\\
+\menucommand{DPD > {\faSix \symbol{"F6E3}} Deconstructor}
+}
+
+Like the DPD Dictionary, before you can issue any search, you have to create the deconstructor's optimized table first, by pressing {\faSix \symbol{"F7D9}} Generate button and wait for a while. When deconstructor data is ready, the result is listed immediately in Pāli order (see Figure \ref{fig:dpd-deconstructor}). You can change the maximum number of results by the menu button provided. And you can filter the result by entering some query. Three modes of search filter are available: (1) search by term's start, (2) search by term's within, and (3) search both by term's and deconstruction's within. The last mode can be a little slow.
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.9\linewidth]{images/dpd-deconstructor.png}\\
+\caption{DPD Deconstructor window}
+\label{fig:dpd-deconstructor}
+\end{figure}
+
+\boxnote{After the optimized data of DPD Dictionary and Deconstructor are created, it is a good practice to lock the PP-DPD database by toggling this menu:\\
+\menucommand{DPD > {\faSix \symbol{"F09C}} PP-DPD DB unlocked}\\
+to\\
+\menucommand{DPD > {\faSix \symbol{"F023}} PP-DPD DB locked}\\
+\\
+Now then the {\faSix \symbol{"F7D9}} Generate button in both windows will be disabled.
+}
+
+\subsection{Other tools}
+
+Apart from the main two groups of data mentioned above, we can access other information by listing them in tables. Available data are all DPD head words, Pāli roots as organized by the DPD, and families of terms.
+
+The DPD head words are those having definitions and detailed information. These data get retrieved when you search in the dictionary. If you just want to see the list, open the head-word window by menu DPD > {\faSix \symbol{"F521}} Head words. The window is shown in Figure \ref{fig:dpd-headwords}.
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.9\linewidth]{images/dpd-headwords.png}\\
+\caption{DPD Head words}
+\label{fig:dpd-headwords}
+\end{figure}
+
+In a similar manner, roots that are listed in the DPD can be shown all at once in Roots window (see Figure \ref{fig:dpd-roots}), by menu DPD > {\faSix \symbol{"F4D8}} Roots.
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.9\linewidth]{images/dpd-roots.png}\\
+\caption{DPD Roots}
+\label{fig:dpd-roots}
+\end{figure}
+
+Students of Pāli and Buddhism will enjoy the collections of various data in the DPD, known as \emph{families of terms}. These include compound family, word family, idiom family, and set family. Whereas the word and idiom family can also be shown in the result of DPD Dictionary, other families are listed only in family window. You can open this window by menu DPD > {\faSix \symbol{"F468}} Families of terms. An example of a family of a word set can be seen in Figure \ref{fig:dpd-families}.
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.9\linewidth]{images/dpd-families.png}\\
+\caption{A family of a word set}
+\label{fig:dpd-families}
+\end{figure}
+
+\section{Manual installation}
+
+The development of DPD is very active, so it is frequently updated. On the contrary, the development of \textsc{Pāli\,Platform} takes a slower pace. This difference may come from life and working style of the developers. The DPD engages with a lot of people online, and it has an established web version. The developer of \textsc{Pāli\,Platform} is more solitary and mostly enjoys offline life. The data shipped with \textsc{Pāli\,Platform} are therefore designed to be generated (or easily fixed in some cases) by the users.
+
+Normally, when a new release of DPD comes out, I have to check the integrity and applicability of the data before making use of it. When the data has been updated so quickly that I cannot keep pace with, I have added a way to check its applicability, as shown in the instruction box below.
+
+\dothis{To check the applicability of DPD after downloading and unpacking it, use this menu:\\
+\menucommand{DPD > {\faSix \symbol{"F0F1}} Check DB applicability}\\
+\\
+If the result is negative, you should revert the database to an older version.
+}
+
+It makes sense that the DPD download URL set by the program is safe to use, hence applicable. However, if the URL is so old that you want to try the newest version, you can install the DB manually (see the box below).
+
+\newpage
+\dothis{To install the newest version of DPD, follow these steps:\\
+\begin{compactenum}
+\item Go to the DPD releases\footnote{\url{github.com/digitalpalidictionary/dpd-db/releases}}.
+\item Find the most recent release and download \texttt{dpd.db.tar.bz2} from its assets.
+\item Unpack the \texttt{bz2} file with a suitable program, resulting in \texttt{dpd.db}.
+\item Copy the \texttt{dpd.db} to directory \texttt{data/db/} in the program's root.
+\item Check the database's applicability as described above.
+\item Alternatively, you can check the applicability by using DpdUtil (see Section \ref{sect:dpdutil} on page \pageref{sect:dpdutil}).
+\end{compactenum}
+}
