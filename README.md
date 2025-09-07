@@ -26,8 +26,3 @@ To build the whole book, follow these steps:
 3. If `ppman.pdf` is produced, the build is successful. Otherwise, you have to fix errors, possibly by installing missing packages in case you have an insufficient installation. If any syntax errors occur, you have to fix those too.
 4. If only some chapters are needed, edit and uncomment `includeonly` in `preamble.tex`, and rebuild it again. You can see the sequence of files in `ppman-base.tex`.
 
-## Notes on licensing
-
-Form version 3.0 onward, the *GNU Free Documentation License* is applied to the work. This means the LaTeX source files will be always publicly available and amendable. Now the work belongs to the public. To help editing the book in the main branch, please use the *pull request* mechanism.
-
-Apart from the strict license used, I also allow derivative works, possibly translations and partial compositions, to be relicensed to *Creative Commons Attribution-ShareAlike 4.0 International License* ([CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)) provided that the LaTeX source files are not used.
