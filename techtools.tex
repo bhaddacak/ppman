@@ -4,13 +4,13 @@ I hesitated to add this chapter in the manual because very few will find the too
 
 Tools described here are not part of the graphic user interface (GUI), but some functions can be invoked by a menu. These tools run in text mode, or command line interface (CLI). This means the users have to be familiar with console terminals, or command prompt in Windows' idiom.
 
-I will skip how to work with your terminals because there is a large variety of them. However, the idea is simple: to tell your computer to do things with commands in text. In fact, we have already seen the uses of command line when we talked about how to run the program. If you know how to use command line, running the program is a lot easier.
+I will skip how to work with your terminals because there is a large variety of them. However, the idea is simple: to tell your computer to do things with commands in text. In fact, we have already seen the uses of command line when we talked about how to run the program. If you know how to use command line, making the program work in your machine is a lot easier.
 
-At first, these tools are not designed to be used by users. I created the tools to facilitate the developing process. In this chapter, I will introduce only two tools, which are exposed the interface to users, i.e., DpdUtil and ScUtil.\footnote{These tools need all library modules to be present, even if some are not used, like JavaFX, for example.}
+At first, these tools are not designed to be used by users. I created the tools to facilitate the developing process. In this chapter, I will introduce only three tools, which are exposed the interface to users, i.e., DpdUtil, ScUtil, and CpUtil.\footnote{These tools need all library modules, including JavaFX, to be present, even if some are not really used.}
 
-\section{DpdUtil}\label{sect:dpdutil}
+\section{DpdUtil (Utilities for DPD)}\label{sect:dpdutil}
 
-In short, the DpdUtil is a utility to use with DPD. It has only two functions by now. When you get the DPD database and unpack it to its place, supposedly in directory \texttt{data/db/}. You can use the tool to check the database's version and its applicability. The use of DpdUtil depends on the platform you use (see the box below).
+In short, the DpdUtil is a utility to use with DPD. It has only two functions by now. When you get the DPD database and unpack it to its place, supposedly in directory \texttt{data/db}. You can use the tool to check the database's version and its applicability. The use of DpdUtil depends on the platform you use (see the box below).
 
 \dothis{To see the help of DpdUtil, open a terminal at the program's root directory, and do this:\\
 \hspace{5mm}\bullet\ In Windows:\\
@@ -37,13 +37,13 @@ Pāli Platform DPD Util CLI
         -v      Show DPD database version
   Notes:
     To invoke the program, the Java convention has to be used.
-    Typically, if no launcher script available, this is the way 
-    to do when you are at the program's root directory:
+    At the program's root directory, if no launcher script available,
+    type this at the console: 
     $ java -p modules -m paliplatform.dpd/paliplatform.dpd.DpdUtil
 \end{verbatim}
 }
 
-From the help, it tell us that DpdUtil is just an abstract name. The real command is wrapper scripts accommodated for two major OS families.
+From the help, it tells us that DpdUtil is just an abstract name. The actual command is wrapper scripts facilitating two major OS families.
 
 Normally, we use DpdUtil with a command followed by options. By now the tool is just in its infancy. So, there is no command at all, just bare options.\footnote{This is quite inappropriate from an engineering point of view. It should be a command after all. Perhaps, `\texttt{show}' will be used in the future for these options. By now, I just make the tool easiest to use.} And only two options are available, \texttt{-t} and \texttt{-v}.
 
@@ -60,11 +60,11 @@ Normally, we use DpdUtil with a command followed by options. By now the tool is 
 \hspace{5mm}To test the database's applicability
 }
 
-I show you DpdUtil first because it is really simple and small. If you understand this, the other tools will be easy because they operate by the same pattern, but more complicated.
+I show you DpdUtil first because it is really simple and small. If you understand this, the other tools will be easy because they operate by the same pattern, albeit more complicated.
 
-\section{ScUtil}
+\section{ScUtil (Utilities for SuttaCentral)}
 
-ScUtil is the tool to deal with the data file of SuttaCentral. I had substantial uses of this during my development of its reader. To use this tool, you have to download and install the SuttaCentral data in the program first, supposedly in directory \texttt{data/text/sc/}.
+ScUtil is the tool to deal with the data file of SuttaCentral. I had substantial uses of this during my development of its reader. To use this tool, you have to download and install the SuttaCentral data in the program first, supposedly in directory \texttt{data/text/sc}.
 
 \dothis{To see the help of ScUtil, open a terminal at the program's root directory, and do this:\\
 \hspace{5mm}\bullet\ In Windows:\\
@@ -121,8 +121,8 @@ Pāli Platform SuttaCentral Util CLI
        $ ScUtil show -t mn1
   Notes:
     To invoke the program, the Java convention has to be used.
-    Typically, if no launcher script available, this is the way 
-    to do when you are at the program's root directory:
+    At the program's root directory, if no launcher script available,
+    type this at the console: 
     $ java -p modules -m paliplatform.reader/paliplatform.reader.ScUtil
 \end{verbatim}
 }
@@ -183,9 +183,9 @@ If you want to sort the files as well, use this command instead.
 
 \boxcommand{./scutil.sh list -m | grep 'sn1$\backslash$.' | sort -V}
 
-You can see that if you use Linux with the tool, it can considerably enhance the functionality of the tool.
+You can see that if you use Linux with the tool, it can considerably enhance the functionality.
 
-When you explore the directory of SuttaCentral data (\texttt{data/ text/sc/}), apart from the data file you will see another text file named \texttt{sc-heads.txt}. This file is auto-generated, but you can create it yourselves with the following command. After that you will see the file in the current directory (the program's root).
+When you explore the directory of SuttaCentral data (\texttt{data/ text/sc}), apart from the data file you will see another text file named \texttt{sc-heads.txt}. This file is auto-generated, but you can create it yourselves with the following command. After that you will see the file in the current directory (the program's root).
 
 \boxcommand{ScUtil save -h}
 
@@ -195,6 +195,145 @@ As described so far, the guidelines can help you use ScUtil effectively in commo
 
 You can save the result to a file instead with \texttt{save -c} command. When you find an odd character and want to know where it is, try `\texttt{find -c <ch>}' command (replace <ch> with the character). I will not give you more explanations on this. If you find this useful, it is your turn to experiment with the tool.
 
+\section{CpUtil (Utilities for Corpora)}
+
+To make the maintenance of text collections more effective and easier, I apply some functionality in ScUtil to cover all text corpora we have. The result is \emph{CpUtil}.
+
+\dothis{To see the help of CpUtil, open a terminal at the program's root directory, and do this:\\
+\hspace{5mm}\bullet\ In Windows:\\
+\commandline[>]{cputil}\\[1mm]
+\hspace{5mm}\bullet\ In Linux/macOS:\\
+\commandline{./cputil.sh}
+}
+
+As shown by its help below, some functions are overlapping with ScUtil, some are not present in that tool. To the best result, when you deal with SuttaCentral data, using both tools in tandem is advisable.
+
+{\footnotesize
+\begin{verbatim}
+Pāli Platform Corpus Util CLI
+  Usage:
+    CpUtil <command> <option>
+      (The abstract CpUtil can be a launcher script,
+       such as cputil.sh or cputil.cmd which can be
+       found in the program's root directory.
+       See also Notes below.)
+  Commands:
+    list	Show information of corpora
+        List options:
+        -l <corpus>	Show file list of <corpus>
+        -f	Show full information of collections
+        <none>	Show brief information of collections
+    show	Show some analyses
+        Show options:
+        -c <corpus>	Analyze character stat in <corpus>
+    find	Find certain information
+        Find options:
+        -c <corpus> <ch>	Find a character in <corpus>
+    save	Analyze and save data
+        Save options:
+        -l <corpus>	Save file list of <corpus>
+        -c <corpus>	Analyze character stat in <corpus> and save
+        -cf <corpus> [max]	Like -c but with top max-freq result findings
+        -tr <corpus> <files>	Save <files> to Roman script (Pali Common)
+        -ti <corpus> <files>	Save <files> to Roman script (ISO 15919)
+        -ta <corpus> <files>	Save <files> to Roman script (IAST)
+        -tl <corpus> <files>	Save <files> to Roman script (Least)
+        -tu <corpus> <files>	Save <files> to Roman script (Unique)
+        -td <corpus> <files>	Save <files> to Devanagari script
+        -tk <corpus> <files>	Save <files> to Khmer script
+        -tm <corpus> <files>	Save <files> to Myanmar script
+        -ts <corpus> <files>	Save <files> to Sinhala script
+        -tt <corpus> <files>	Save <files> to Thai script
+    <none>	Show this help
+  Examples:
+    1. To list all corpora with full information:
+       $ CpUtil list -f
+    2. To show the character stat of SuttaCentra collection:
+       $ CpUtil show -c sc
+       (This command will show at most 20 results)
+    3. To find whether '^' is unexpectedly present in CSTDEVA:
+       $ CpUtil find -c cstdeva '^'
+       (No escaping required)
+    4. To save the character stat of CST4:
+       $ CpUtil save -c cst4
+    5. To save the character stat with finding results of CSTDEVA:
+       (25 occurences maximum by default)
+       $ CpUtil save -cf cstdeva
+    6. To save the character stat of with finding results of GRAM:
+       (10 occurences maximum)
+       $ CpUtil save -cf gram 10
+    7. To show file list in CSTDEVA:
+       $ CpUtil list -l cstdeva
+    8. To save Visuddhimagga 1 in CSTDEVA to common Roman:
+       $ CpUtil save -tr cstdeva e0101n.mul
+       (File extension can be omitted)
+    9. To save all mūla Vinaya of CST4 to Devanagari:
+       $ CpUtil save -td cst4 vin*mul
+       (Wildcards, ? and *, can be used for multiple input)
+   10. To save MN10 of SuttaCentral to Devanagari:
+       $ CpUtil save -td sc mn10
+       (Only SC needs an exact text ID, one file at a time)
+  Technical notes:
+    1. IAST here uses ṃ (m dot below) not ṁ (m dot above),
+       but uses ḻ (l line below) as a consonant, not ḷ (l dot below),
+       because the latter stands for a Sanskrit vowel.
+    2. Pāli Common also uses ṃ (m dot below), also ḷ (l dot below)
+       as a consonant. This transliteration is commonly used for Pāli.
+       Moreover, ṛ, ṝ, ḷ, and ḹ are also used as Sanskrit vowels.
+       Hence, the method can be ambiguous when used with Sanskrit.
+    3. Least Contamination method is like Pāli Common but retains
+       Devanagari symbols visually. This guarantees 100% reversibility
+       for Pali, but possibly unsuitable for Sanskrit.
+    4. Roman Unique is like Least Contamination, but ḻ (l line below)
+       is used instead. This makes Sanskrit 100% reversible.
+    5. Converting from Roman to other scripts does not suppose
+       ISO nor IAST input. Only Pali is guaranteed.
+    6. To invoke the program, the Java convention has to be used.
+       At the program's root directory, if no launcher script available,
+       type this at the console: 
+       $ java -p modules -m paliplatform.reader/paliplatform.reader.CpUtil
+       (For the SuttaCentral corpus, see also ScUtil.)
+\end{verbatim}
+}
+
+The main uses of the tool are to show corpus information, list files, do character analysis, and transliterate texts. To illustrate with a simple example, you can list all corpora briefly, to see what is available, by this command (replace CpUtil with a proper wrapper):
+
+\boxcommand{CpUtil list}
+
+The result from my computer is shown below. When you need more information of the corpora, use this command instead: \texttt{CpUtil list -f}.
+
+{\footnotesize
+\begin{verbatim}
+$ ./cputil.sh list
+1. CSTR: Chaṭṭha Saṅgāyana Tipiṭaka Restructured
+   => data/text/cstr (203 files found)
+2. CSTDEVA: CST Devanāgarī Base (Tipitaka.org XML)
+   => data/text/cstdeva (217 files found)
+3. CST4: CST4 Data (customized)
+   => data/text/cst4/cst4roman_utf8.zip (found)
+4. BJT: Buddha Jayanthi Tripitaka
+   => data/text/bjt/bjt_pali.zip (found)
+5. PTST: The Pali Text Society Tipiṭaka
+   => data/text/ptst/gretil_pts.zip (found)
+6. SRT: Siam Rath Tipiṭaka
+   => data/text/srt/srt_roman.zip (found)
+7. GRAM: Traditional Pāli Grammar Books
+   => data/text/gram/gram.zip (found)
+8. SC: SuttaCentral
+   => data/text/sc/bilara-data-published.zip (found)
+9. SKT: GRETIL Sanskrit Collection
+   => data/text/skt/1_sanskr.zip (found)
+Done in 0.736 seconds
+\end{verbatim}
+}
+
+For other commands in this tool are somewhat technical, you have to learn them from the help and try them yourselves. However, for corpus maintainers, you can do character analysis fully in just one command. For example, to analyze CSTDEVA and save the results to a file, do this:
+
+\newpage
+\boxcommand{CpUtil save -cf cstdeva}
+
+This command is really useful. It does many things in one go, but it takes time to run completely. For other details, please read and see examples from the help.
+
 \section{Concluding remarks}
 
-This chapter has introduced you to a powerful toolset bundled with the program. Once you know the existence of the tools and you find some uses with them, you will realize the power and handiness of command line programming. When you understand how these work, you may suggest other features to the developers (only me by now). When GUI is not part of the work, programming is a lot easier, and we can do it pretty fast.
+This chapter has introduced you to a powerful toolset bundled with the program. Once you know the existence of the tools and you find some uses from them, you will realize the power and handiness of command line programming. When you understand how these work, you may suggest other features to the developers (only me by now). When GUI is not part of the work, programming is a lot easier, and we can do it pretty fast.

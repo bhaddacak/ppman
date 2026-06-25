@@ -20,7 +20,7 @@ To open Lucene Finder, just click {\ppicons L} button on the main tool bar, or m
 \label{fig:lucene-empty}
 \end{figure}
 
-Technically speaking, when Lucene searches a text collection, it does not search the texts themselves. Doing so is not efficient and does not need any special tool. That is what Document Finder does in the content search. To optimize the search, we have to make an index\footnote{An index may consist of many files. We will not talk about its implementation here.} of the collection first and search upon it instead. One collection may have several indexes with different build options. But only one index will be searched at a time. What we are going to learn now is how to build an index.
+Technically speaking, when Lucene searches a text collection, it does not search the texts themselves. Doing so is not efficient and does not need any special tool. That is what Document Finder does in the content search. To optimize the search, we have to make an index\footnote{An index may consist of many files. Lucene creates one folder per index. We will not talk about its implementation here.} of the collection first and search upon it instead. One collection may have several indexes with different build options. But only one index will be searched at a time. What we are going to learn now is how to build an index.
 
 \section{How to build a Lucene index}
 
@@ -42,10 +42,10 @@ The first two options are obvious and you need some familiarity with the groupin
 Additional indexing options can be selected by {\faSix \symbol{"F560}} menu button (see Figure \ref{fig:lucene-indexoptions}). Here are a brief explanation of them. Note that what is indexed will be searchable. 
 
 \begin{compactitem}
-\item \textbf{Include numbers}, if selected, all (Arabic) numbers will be indexed. This option is turned off by default because we hardly search numbers.
-\item \textbf{Include field `bold'}, if selected, parts of text marked by boldface will be indexed separately (see the box below). This option is turned off by default.
-\item \textbf{Length exclusion} has four sub-options, i.e., No exclusion, ==\,1 char long, <=\,2 chars long, and <=\,3 chars long. The default of this is all single character will be excluded (==\,1). You may turn this off, or exclude one and double characters (<=\,2), or exclude words with three characters long or less (<=\,3).
-\item \textbf{Use stopwords}, if selected, terms in the stopword-list\footnote{This is the file named \texttt{data/rules/stopwords.txt}. You can edit this file with an editor, or use menu Edit stopwords.} will be excluded. This option is turned off by default.
+\item \textbf{Include numbers}: If selected, all (Arabic) numbers will be indexed. This option is turned off by default because we hardly search for numbers.
+\item \textbf{Include field `bold'}: If selected, parts of text marked by boldface will be indexed separately (see the box below). This option is turned off by default.
+\item \textbf{Length exclusion}: There are four sub-options, i.e., no exclusion, ==\,1 char long, <=\,2 chars long, and <=\,3 chars long. The default of this is all single character will be excluded (==\,1). You may turn this off, or exclude one and double characters (<=\,2), or exclude words with three characters long or less (<=\,3).
+\item \textbf{Use stopwords}: If selected, terms in the stopword-list\footnote{This is the file named \texttt{data/rules/stopwords.txt}. You can edit this file with an editor, or use menu Edit stopwords.} will be excluded. This option is turned off by default.
 \end{compactitem}
 
 \newpage
@@ -62,22 +62,22 @@ Once you are satisfied with all the options you have selected, then hit the {\fa
 
 One powerful feature of Lucene when it indexes a structured collection is it can search by fields. We can simply understand `field' as a tag attached to a part of text. If the text has a complex structure, it can have several tags. For example, a Pāli text usually has headings and body text. In some text, parts of the body can be verses (\pali{gāthā}), some sections are marked as notes, and some portions are marked with boldface. If a collection has these all in its structure, it can have the following fields: body text, headings, gāthā, notes, boldface (see the box below for the exact fields used in the program).
 
-\boxnote{Unlike the former versions, the fields indexed by Lucene are now simplified. Only five of them are able to select as follows:\\
+\boxnote{The fields indexed by Lucene are exposed to the user with simplicity. Only five of them are able to select as follows:\\
 \hspace{5mm}\bullet\ \textbf{body} is the main part of the text (the body text), this always includes text in boldface. Under the body field, they are other subfields. For example, in CSTR and CST4 collection they can be of \emph{bodytext, centre, indent,} and \emph{unindented}. The subfields cannot be selected, but they will show in search results. \\
 \hspace{5mm}\bullet\ \textbf{headings} is parts used as headings. Headings in a document can be of multiple levels, but they are all grouped together. In CSTR and CST4 collection, the heading subfields can be of \emph{nikaya, book, chapter,} and \emph{title}, to name just a few. Note that some collections do not have this field.\\
-\hspace{5mm}\bullet\ \textbf{gāthā} is the verse parts of the text. Typically in CSTR and CST4 collection, the subfields in this group are \emph{gatha1, gatha2, gatha3,} and \emph{gathalast}.\footnote{If a stanza has four lines (maximum), all these subfields are used. If it has only three or two or (rarely) one line, subfields corresponding to the number of lines will be used.} Note that some collections do not mark the verse parts. So, this field is not available even though the text does contain verses.\\
+\hspace{5mm}\bullet\ \textbf{gāthā} is the verse parts of the text. Typically in CSTR and CST4 collection, the subfields in this group are \emph{gatha1, gatha2, gatha3,} and \emph{gathalast}.\footnote{If a stanza has four lines (maximum), all these subfields are used. If it has only three or two or (rarely) one line, subfields corresponding to the number of lines will be used.} Note that some collections do not mark the verse parts. In such collections, this field is not available even though the text does contain verses.\\
 \hspace{5mm}\bullet\ \textbf{note} is additional/redactional parts. Some collections do not have this field.\\ 
 \hspace{5mm}\bullet\ \textbf{bold} is the boldface parts. Not all collections have this. When this field is selected, other fields will be excluded. 
 }
 
-The benefit of having these fields is you can search selectively by fields. For example, a real use for me is when I search a term and want to know that it has occurences only in verse form or not, I include all fields except gāthā, search and see what comes up.
+The benefit of having these fields is you can search selectively by fields. For example, a real use for me is when I search a term and want to know that if it has occurrences only in verse form or not: I include all fields except gāthā, search and see what comes up, then do it again with only gāthā selected.
 
 \newpage
 \dothis{To open the field selector, press {\faSix \symbol{"F0AE}} button. See Figure \ref{fig:lucene-simple-withfields}.}
 
 \section{Simple search and its results}
 
-The most frequently used search query is an exact single word. Let us try this simple search first and see its result. After we have created an index from a corpus with a text group, we can select it from the index selector. Figure \ref{fig:lucene-simple-withfields} shows a search from the whole CSTR collection by focusing only occurrences in field \emph{gāthā}.
+The most frequently used search query is an exact single word. Let us try this simple search first and see its results. After we have created an index from a corpus with a text group, we can select it from the index selector. Figure \ref{fig:lucene-simple-withfields} shows a search from the whole CSTR collection by focusing only occurrences in field \emph{gāthā}.
 
 \begin{figure}[!hbt]
 \centering
@@ -86,7 +86,7 @@ The most frequently used search query is an exact single word. Let us try this s
 \label{fig:lucene-simple-withfields}
 \end{figure}
 
-When we key in a query and press Enter, if the query is found, the result will show in a list at first telling us about the text's name, the matching score\footnote{To put simply, the higher score means the result is more relevant to the search query. The mathematical model behind this is complicated, and it is not our business to know that. Just take it simply: higher is more relevant. Note that it is not necessary that what you are looking for will be the most relevant result.}, and the field in which it is found. If we want to open the document, right-click at the item required.
+When we key in a query and press Enter, if the query is found, the results will show in a list at first, telling us about the text's name, the matching score\footnote{To put simply, the higher score means the result is more relevant to the search query. The mathematical model behind this is complicated, and it is not our business to know that. Just take it simply: higher is more relevant. Note that it is not necessary that what you are looking for will be the most relevant result.}, and the field in which it is found. If we want to open the document, right-click at the item required.
 
 To see the text fragments found in the results, we have to press {\faSix \symbol{"F530}} toggle button to enable the expanded results. If the fragments are too short, we can expand them further by enabling ``Show whole lines'' option using {\faSix \symbol{"F560}} menu button. Figure \ref{fig:lucene-simple-expanded} shows another search from CSTR collection with DMSA group (the four main nikāyas).
 
@@ -100,9 +100,9 @@ To see the text fragments found in the results, we have to press {\faSix \symbol
 \label{fig:lucene-simple-expanded}
 \end{figure}
 
-\boxnote{Please note that the showing of text fragments in search results is not perfect and very fragile.\footnote{Lucene has its highlighter module, and we use it (the results are marked with \texttt{‣}). But sometimes the highlighter misses the results completely. I compensate this with my own implementation (the results are marked with \texttt{›}). It works fine in most cases, but not perfect. That is why you still see nothing in text fragments sometimes, even though the query is accurately matched.} This means it can be blank in some situations, even though the query is found, particularly with a query in a complex pattern. In this case, open the document and use the viewer's search function instead. Or, if you are lucky, try enabling the ``Show whole lines'' option.}
+\boxnote{Please note that the showing of text fragments in search results is not perfect and very fragile.\footnote{Lucene has its highlighter module, and we use it (the results are marked with \texttt{‣}). But sometimes the highlighter misses the results completely. I compensate this with my own implementation (the results are marked with \texttt{›}). It works fine in most cases, but not perfect. That is why you still see nothing in text fragments sometimes, even though the query is accurately matched.} This means it can be blank in some situations, even though the query is found, particularly with a complex query. If so, open the document and use the viewer's search function instead. Or, if you are lucky, try enabling the ``Show whole lines'' option.}
 
-Another option that you may want to adjust is the number of maximum results (10--100). If a small number of results does not bring the target document, you can increase this number. Allowing large set of results in a search is not quite useful because the search results are sorted by relevancy (see the footnote on the matching score above). When a result has a low score, it means the query has low discriminating power (the term is so common that it appears on a large number of documents). To improve this, try a more specific query.
+Another option that you may want to adjust is the number of maximum results (10--100). If a small number of results does not bring the target document, you can increase this number. Allowing large set of results in a search is not quite useful because the search results are sorted by relevancy (see the footnote on the matching score above). When a result has a low score, it means the query has low discriminating power (the term is so common that it appears on a large number of documents). To improve this, try a more specific query or searching multiple terms.
 
 If you enter multiple words as a query, all words will connect to each other with logical \emph{AND} (more about logical operators below). This means the results will show only documents containing all words in the query. Figure \ref{fig:lucene-simple-twoterms} shows search results from a simple multi-word query.
 
@@ -115,13 +115,14 @@ If you enter multiple words as a query, all words will connect to each other wit
 
 To obtain the results as shown in the picture, you may need to learn how {\faSix \symbol{"F102}} (Collapse all) button and {\faSix \symbol{"F103}} (Expand all) button work. These two buttons are helpful in showing results with fragments ({\faSix \symbol{"F530}} enabled).
 
-\boxnote{The best practice for Lucene Finder is, if possible, using a simple search, with a single word or multiple words, because an exact query can bring precise results without problematic fragments.\\
+\newpage
+\boxnote{The best practice for Lucene Finder is, if possible, using a simple search with a single word or multiple words, because an exact query can bring precise results without problematic fragments.\\
 \hspace{5mm}So, it is advisable to find an exact term first with Term Lister (see Chapter \ref{chap:lister}).
 }
 
 \section{Lucene query syntax}
 
-To use Lucene effectively, you have to know its syntax. The true power of Lucene is here. Some parts of the explanations below may look difficult or too complicated for most non-technical users. I will try my best to keep them easy to understand. Planting with a hoe is fine, but today we also have to learn to drive a tractor.
+To use Lucene effectively, you have to know its syntax. The true power of Lucene is here. Some parts of the explanations below may look difficult or a little complicated for most non-technical users. I will try my best to keep them easy to understand. Planting with a hoe is fine, but today we also have to learn to drive a tractor.
 
 \subsection{Using wildcards}
 
@@ -135,7 +136,7 @@ Here are some examples: Entering `dhamm?' can match `dhammo' or `dhammā' or `dh
 
 \subsection{Using regular expressions}
 
-Regular expressions enhance the use of wildcards substantially, like you replace a slingshot with a machine gun. Other parts of the program allow using regular expressions as well. The downside of this is it takes a steep learning curve. The syntax also looks bizarre, if not terrible, to ordinary users. Teaching how to use regular expressions is not an easy task either. However, in Chapter \ref{chap:regexp}, I have a brief treatment of this topic.
+Regular expressions enhance the use of wildcards substantially, like you replace a slingshot with machine gun. Some other parts of the program allow using regular expressions as well. The downside of this is it takes a steep learning curve. The syntax also looks bizarre, if not terrible, to ordinary users. Teaching how to use regular expressions is not an easy task either. However, in Chapter \ref{chap:regexp}, I have a brief treatment of this topic.
 
 To use a regular expression in a query, just enclose it with slashes \texttt{/\ldots/}. For example, entering `/dhamm[oāe]/' can search either `dhammo' or `dhammā' or `dhamme.' Figure \ref{fig:lucene-syntax-regexp} shows the results of this search.
 
@@ -194,7 +195,7 @@ Range is not limited to numbers. It can be used with terms as well. But it still
 \label{fig:lucene-syntax-range}
 \end{figure}
 
-As you see in the picture, every term between `dhamma' and `dhamme' is found, but not `dhammo' because \pali{o} comes after \pali{e}. But if you search `[dhamma TO dhammā]' instead you will also see `dhammo.' That is not we expect. (Please try this yourselves.)
+As you see in the picture, every term between `dhamma' and `dhamme' is found, but not `dhammo' because \pali{o} comes after \pali{e}. But if you search `[dhamma TO dhammā]' instead you will also see `dhammo.' That is not we expect in Pāli. (Please try this yourselves.)
 
 \subsection{Using term boost}
 
@@ -221,11 +222,11 @@ These operators, if you master them well, can help your searching considerably. 
 \paragraph{(1) dukkhaṃ NOT ariyasaccaṃ} finds documents containing \pali{duk\-khaṃ} but not \pali{ariyasaccaṃ}.
 \paragraph{(2) ``dukkhaṃ ariyasaccaṃ'' AND (vijjā OR āloko)} finds the phrase ``\pali{dukkhaṃ ariyasaccaṃ}'' with \pali{vijjā} or \pali{āloko}.
 \paragraph{(3) (dukkhaṃ OR dukkhasamu*) AND ariyasaccaṃ} finds \pali{dukkhaṃ} and \pali{ariyasaccaṃ} or \pali{dukkhasamu*} and \pali{ariyasaccaṃ}. Using a wildcard can save some typing but also can bring irrelevant results.
-\paragraph{(4) -dukkhaṃ aniccaṃ +anattā} yields the result containing \pali{anattā} but not \pali{dukkhaṃ}; \pali{aniccaṃ} is optional. 
+\paragraph{(4) +aniccaṃ dukkhaṃ -anattā} yields the result containing \pali{aniccaṃ} but not \pali{anattā}; \pali{dukkhaṃ} is optional. 
 \paragraph{(5) -``dukkhaṃ ariyasaccaṃ'' +vijjā} finds documents having \pali{vijjā} but not ``\pali{dukkhaṃ ariyasaccaṃ}.''
 
 \section{Concluding remarks}
 
-Lucene is really a powerful search tool. To use it at full capacity, you have to learn how to build indexes with options that agree with your specific needs. You have to know about data, i.e., the fields that are used to structure the documents. And most importantly, you have to know its search syntax. I use a lot of space for this chapter because non-technical users are usually frightened by complicated tools, so they need a friendly guide. 
+Lucene is really a powerful search tool. To use it at full capacity, you have to learn how to build indexes with options that agree with your specific needs. You have to know about the data, i.e., the fields that are used to structure the documents. And most importantly, you have to know its search syntax. I use a lot of space for this chapter because non-technical users are usually frightened by complicated tools, so they need a friendly guide. 
 
 What we have learned so far is just one part of Lucene's comprehensive features. Lucene has many functions that can be used in Natural Language Processing (NLP), beside the Information Retrieval (IR) system that we utilize. Even so, we just touch the surface if its IR capacity. The software can do much more than I have shown you here. However, I think what we know here is enough for Pāli learning and research. Now you should have ideas to play around to deepen your understanding both of the tool and of the language.

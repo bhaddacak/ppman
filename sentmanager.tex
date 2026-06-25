@@ -1,6 +1,6 @@
 \chapter{Sentence Manager}\label{chap:sentmanager}
 
-The creation of this tool is a consequence of Sentence Reader. When operations upon sentences grow complex, a suitable tool is inevitably needed. Together with Sentence Reader, this tool has cost several months of development, as well as headaches, of course. The Manager is the most complex tool of all, in terms of its functions and components. I cannot tell and show you everything here. I will explain only the basic ideas that you should know when you explore the tool by yourselves. 
+The creation of this tool is a consequence of Sentence Reader. When operations upon sentences grow complex, a suitable tool is inevitably needed. Together with Sentence Reader, this tool has cost several months of development, as well as headaches. The Manager is the most complex tool of all, in terms of its functions and components. I cannot tell and show you everything here. I will explain only the basic ideas that you should know when you explore the tool by yourselves. 
 
 Before you read on this chapter, you must understand how the Reader works (see Chapter \ref{chap:sentreader}), and know what I mean by \emph{sentence, sequence, hash, edit,} and \emph{variant}.
 
@@ -9,11 +9,11 @@ Sentence Manager can be launched by menu Sentence > {\faSix \symbol{"F0B1}} Sent
 \begin{figure}[!hbt]
 \centering
 \includegraphics[width=0.9\linewidth]{images/sentmanager-sentences.png}\\
-\caption{Tab Sentences in Sentence Manager}
+\caption{Sentences in Sentence Manager}
 \label{fig:sentmanager-sentences}
 \end{figure}
 
-There are three main tabs in the Manager: Sentences, Translation Variants, and Merger. The first two tabs work for one directory at a time. This means there must be at least one working directory. The default is `\texttt{main}'.\footnote{By default, artifacts created by the Reader and Manager are saved in directory \texttt{data/sentences/}, but you certainly can use other base directory.} You can change the working directory by {\faSix \symbol{"F07B}} button. Typically, one directory contains many sentence files, several sequence files, and one variant info file.\footnote{In the implementation, sentence and info files are in JSON format. Sequence files are just plain text with \texttt{.seq} extension.}
+There are three main tabs in the Manager: Sentences, Translation Variants, and Merger. The first two tabs work for one directory at a time. This means there must be at least one working directory. The default is `\texttt{main}'.\footnote{By default, artifacts created by the Reader and Manager are saved in directory \texttt{data/sentences}, but you certainly can use other base directory.} You can change the working directory by {\faSix \symbol{"F07B}} button. Typically, one directory contains many sentence files, several sequence files, and one variant info file.\footnote{In the implementation, sentence and info files are in JSON format. Sequence files are just plain text with \texttt{.seq} extension.}
 
 \section{Sentences}
 
@@ -26,20 +26,20 @@ In the first open, sentences in the working directory shown in the table are sor
 \begin{figure}[!hbt]
 \centering
 \includegraphics[width=0.9\linewidth]{images/sentmanager-sequences.png}\\
-\caption{When a sequence is selected}
+\caption{Selecion of a sequence}
 \label{fig:sentmanager-sequences}
 \end{figure}
 
 However, the sentence table can also be sorted by its columns. You just click the table headers. When trying this a couple of times, you will see that the order has been changed circularly. One use case of this is when you want to know which sentences have translations more than one. You sort the table by column \emph{\#Trans} and see the rows with greater-than-one translations.
 
-Once you select a sentence, you can edit its text (only the \emph{edit} form is mutable), as well as translations, in the lower part of the window. There are two tabs for the editing purposes. The last tab (\emph{In sequences}) shows the selected sentence across sequences in the working directory. The numbers are the counts of the occurrences if the sentence appear in a sequence. If several sequences have a non-zero number, it shows that the sentence is reused in several places (see Figure \ref{fig:sentmanager-inseq}).
+Once you select a sentence, you can edit its text (only the \emph{edit} form is mutable), as well as translations, in the lower part of the window. There are two tabs for the editing purposes. The last tab (\emph{In sequences}) shows the selected sentence across sequences in the working directory. The numbers are the counts of the occurrences if the sentence appears in a sequence. If several sequences have a non-zero number, it shows that the sentence is reused in several places (see Figure \ref{fig:sentmanager-inseq}).
 
 The sentences with an asterisk (*) are those have repeated occurrences in one sequence. Sentences only used across sequences are not marked with the asterisk. Study the counts explained above carefully if you are still curious.
 
 \begin{figure}[!hbt]
 \centering
 \includegraphics[width=0.9\linewidth]{images/sentmanager-inseq.png}\\
-\caption{Statistics showing a sentence reused in sequences}
+\caption{Statistics of sentence's reuse in sequences}
 \label{fig:sentmanager-inseq}
 \end{figure}
 
@@ -58,12 +58,12 @@ If you want to delete a sentence, select it and hit {\faSix \symbol{"F1F8}} butt
 
 \section{Variants}
 
-The Variants tab is a lot simpler (see Figure \ref{fig:sentmanager-variants}). All variants and their information are shown here. You can add a new variant by {\faSix \symbol{"F067}} button. This addition is compulsory when you insert a translation into sentences. You can also hide variants you do not want to see in the translations with {\faSix \symbol{"F070}} button. This can make the display less clustered.
+The Variants tab is a lot simpler (see Figure \ref{fig:sentmanager-variants}). All variants and their information are shown here. You can add a new variant by {\faSix \symbol{"F067}} button. This addition is a common practice when you insert a translation into sentences. You can also hide variants you do not want to see in the translations with {\faSix \symbol{"F070}} button. This can make the display less clustered.
 
 \begin{figure}[!hbt]
 \centering
 \includegraphics[width=0.9\linewidth]{images/sentmanager-variants.png}\\
-\caption{Tab Translation Variants in Sentence Manager}
+\caption{Translation Variants in Sentence Manager}
 \label{fig:sentmanager-variants}
 \end{figure}
 
@@ -76,7 +76,7 @@ The last tab of the Manager is the sentence directory merger (Figure \ref{fig:se
 \begin{figure}[!hbt]
 \centering
 \includegraphics[width=0.9\linewidth]{images/sentmanager-merger.png}\\
-\caption{Tab Merger in Sentence Manager}
+\caption{Merger in Sentence Manager}
 \label{fig:sentmanager-merger}
 \end{figure}
 

@@ -4,7 +4,7 @@ This is one of the most useful tools for new learners. Traditional students have
 
 \section{Pronouns}
 
-If you are new to this window, I suggest you select \emph{Pronouns} first because the pronoun list is finite. You will see something like Figure \ref{fig:declension-pron}. The result of declension tables will show one gender at a time. If there are multiple genders to decline, you can choose whether \emph{m} (masculine), \emph{f} (feminine), or \emph{nt} (neuter). Short meaning of each pronoun can also be added when this option is selected.
+For new users, seeing \emph{Pronouns} first is easier because the pronoun list is finite and it is often used. You will see something like Figure \ref{fig:declension-pron}. The result of declension tables will show one gender at a time. If there are multiple genders to decline, you can choose whether \emph{m} (masculine), \emph{f} (feminine), or \emph{nt} (neuter). Short meaning of each pronoun can also be added when this option is selected.
 
 \begin{figure}[!hbt]
 \centering
@@ -13,7 +13,7 @@ If you are new to this window, I suggest you select \emph{Pronouns} first becaus
 \label{fig:declension-pron}
 \end{figure}
 
-For new students, the expansion of abbreviations used in the table, as shown in Table \ref{tab:cases-expanded}, may do some help.
+To remind new students, the expansion of abbreviations used in the table, as shown in Table \ref{tab:cases-expanded}, may do some help. Note that some of pronouns have no vocative form, so the row of this is blank.
 
 \begin{table}[!hbt]
 \centering
@@ -38,35 +38,35 @@ An amazing feature of this tool is that you can check the declined terms against
 \begin{figure}[!hbt]
 \centering
 \includegraphics[width=0.9\linewidth]{images/declension-pron-list.png}\\
-\caption{Declension of \pali{tumha} against a term-frequency list}
+\caption{Declension of \pali{tumha} against a term-freq list}
 \label{fig:declension-pron-list}
 \end{figure}
 
 \section{Nouns/Adjectives}
 
-Nouns and adjectives in Pāli undergo the same inflectional rules, and sometimes a word takes dual position. So, I group them together. Since terms in this group are numerous, you have to select what you want by entering some query. Only simple search is available here. The source of terms is the \emph{Concise Pāli-English Dictionary} (CPED). An example of noun's declension is shown in Figure \ref{fig:declension-noun}. 
+Nouns and adjectives in Pāli undergo the same inflectional rules, and sometimes a word takes dual position. So, I group them together. Since terms in this group are numerous, you can select what you want to see by entering some query. Only simple search is available here. The source of terms is the \emph{Concise Pāli-English Dictionary} (CPED). An example of noun's declension is shown in Figure \ref{fig:declension-noun}. 
 
 \begin{figure}[!hbt]
 \centering
 \includegraphics[width=0.9\linewidth]{images/declension-noun-list.png}\\
-\caption{Declension of \pali{vimutti} against a term list}
+\caption{Declension of \pali{vimutti} against a term-freq list}
 \label{fig:declension-noun}
 \end{figure}
 
-Results of an adjective's declension look exactly the same, but adjectives can decline into all three genders.
+Results of an adjective's declension look exactly the same, but adjectives can be declined into all three genders.
 
 What about the \emph{Compute} button then? It has two uses. First, when a term has both regular and irregular declensions. And second, just when you want to play around with experiments.
 
-I will give an example of the first case. For the second, the users can do by themselves. There are many words that use irregular paradigms, and I put a lot of effort to incorporate them here seamlessly.\footnote{If you find any irregular word that declines wrongly, according to the traditional textbooks, please report me right away.}
+I will give an example of the first case. For the second, the users can do by themselves. There are many words that use irregular paradigms, and I put a lot of effort to incorporate them here seamlessly.\footnote{If you find any irregular word that is declined wrongly according to the traditional textbooks, please report to the author right away.}
 
-A term I give here is \pali{sara}. When it means `pond' it declines irregularly as \pali{mano-gaṇa} (m.\ only). This is what is shown when you enter \pali{`sara'} at the search box. But when it means `sound' or `arrow' it declines like normal nouns (m.\ and nt.). To reach the latter case you have to hit \emph{Compute} after you enter \pali{`sara'}. See the comparison in Figure \ref{fig:declension-sara-compare}.
+A term I give here is \pali{sara}. When it means `pond' it is declined irregularly as \pali{mano-gaṇa} (m.\ only). This is what is shown when you enter \pali{`sara'} at the search box. But when it means `sound' or `arrow' it is declined like a normal noun (m.\ and nt.). To reach the latter case you have to hit \emph{Compute} after you enter \pali{`sara'}. See the comparison in Figure \ref{fig:declension-sara-compare}.
 
 \begin{figure}[!hbt]
 \centering
 \includegraphics[width=0.9\linewidth]{images/declension-sara-mano.png}\\
 (a) Declined as \pali{mano-gaṇa}\\[3mm]
 \includegraphics[width=0.9\linewidth]{images/declension-sara-compute.png}\\
-(b) Computed declension\\
+(b) Computed declension (normal noun)\\
 \caption{Declension of \pali{sara} in two cases}
 \label{fig:declension-sara-compare}
 \end{figure}
@@ -80,7 +80,7 @@ For those who want to experiment with generic paradigms, you simply input a word
 
 \section{Numbers}
 
-Numeral declension is one of the most difficult parts of the program to implement.\footnote{The code of this part is not long but complicated.} All output in this part uses calculation. That means you can enter any number up to 6 digits, and it will be converted to its Pāli numeral\footnote{The result list is not exhaustive, because one complex number can be rendered in many ways. The results here show only some compound units that can be calculated by a computer. Try 150, 250, 350, and so on; you will see why the conversion is so difficult.} with declension tables, both cardinal and ordinal. To help the beginners, however, there are pre-built lists that can be easily selected. Figure \ref{fig:declension-num} shows the result of \texttt{100250}.
+Numeral declension is one of the most difficult parts of the program to implement.\footnote{The code of this part is not long but complicated.} All output in this part comes from calculation. That means you can enter any number up to 6 digits, and it will be converted to its Pāli numeral\footnote{The result list is not exhaustive, because one complex number can be rendered in many ways. The results here show only some compound units that can be calculated by computation. Try 150, 250, 350, and so on; you will see why the conversion is so difficult.} with declension tables, both cardinal and ordinal. To help the beginners, however, there are pre-built lists that can be easily selected. Figure \ref{fig:declension-num} shows the result of \texttt{100250}.
 
 I will skip other details because everything is self-explained and it is better to learn by playing.
 

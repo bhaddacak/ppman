@@ -1,8 +1,8 @@
-\chapter{Pāli Text Editor}\label{chap:editor}
+\chapter{Text Editor}\label{chap:editor}
 
-In this part we will examine general tools that can be used for various purposes. The first one we should know is the internal text editor. I call this \emph{Pāli Text Editor} or sometimes simply (the program's) \emph{Text Editor} or just \emph{Editor}. This is a specialized text editor for using with Roman Pāli text, especially with the text collections handled by the program.
+In this part we will examine general tools that can be used for various purposes. The first one we should know is the internal text editor. I call this simply (the program's) \emph{Text Editor} or just \emph{Editor}. This is a specialized text editor primarily for using with Pāli text, especially with the text collections handled by the program. Now the Editor has ability to view and edit text in any scripts supported by the program.
 
-In the main window, Text Editor is always present in the last tab. To launch a new window of it, you can use {\faSix \symbol{"F303}} and {\faSix \symbol{"F574}} button, or their equivalent in menu File. The former opens a blank window to edit a new text; the latter opens an existing file.
+In the main window, Text Editor is always present in the last tab. To launch a new window of it, you can use {\faSix \symbol{"F303}} and {\faSix \symbol{"F574}} button, or their equivalent in menu File. The former opens a blank window to edit a new text, whereas the latter opens an existing file.
 
 \dothis{To open a new window of Text Editor:\\
 \hspace{5mm}\bullet\ Click {\faSix \symbol{"F303}} button to open a new window\\
@@ -11,22 +11,24 @@ In the main window, Text Editor is always present in the last tab. To launch a n
 \hspace{5mm}\bullet\ Or use menu File > {\faSix \symbol{"F574}} Open a text file\\
 }
 
-Figure \ref{fig:editor-blank} shows a blank window of Editor when newly opened. By default, it uses the regular mode of input (\fbox{a\blacktriangleright a}), meaning the normal input mode of your computer. If you want to type in Pāli text, you may have to change the mode to \fbox{x\blacktriangleright ā} or \fbox{ā\blacktriangleright ā} by clicking the button (or press \texttt{Ctrl-Space}). The explanation on Pāli input methods can be found in Section \ref{sect:pali-input} on page \pageref{sect:pali-input}.
+Figure \ref{fig:editor-blank} shows a blank window of Editor when newly opened. By default, it uses the regular mode of input (\fbox{a\blacktriangleright a}) or the normal input mode of your computer. If you want to type in Pāli text, you may have to change the mode to \fbox{x\blacktriangleright ā}, \fbox{ā\blacktriangleright ā}, or \fbox{SLP} by clicking the button (or press \texttt{Ctrl-Space}). For Sanskrit, using \fbox{SLP} mode can help you type in Devanāgarī or Roman easily. The explanation on text input methods can be found in Section \ref{sect:keyboard-input} on page \pageref{sect:keyboard-input}.
 
 \begin{figure}[!hbt]
 \centering
 \includegraphics[width=0.8\linewidth]{images/editor-blank.png}\\
-\caption{A new window of Pāli Text Editor}
+\caption{A new window of Text Editor}
 \label{fig:editor-blank}
 \end{figure}
 
-Comparing the Editor with other text editors in your computer, it may not be so powerful or enjoyable to use regularly. To handle Pāli text, however, this tool is quite helpful because it has functions absent in most text editors. The first one as we have seen is the Editor has comfortable ways to enter Pāli letters. Other useful functions will be explained in the following sections. Some common functions of text editors will be left out, though.
+Comparing the Editor with other text editors in your computer, you may find it is not so powerful or enjoyable to use regularly. To handle Pāli/Sanskrit text, however, this tool is quite helpful because it has functions absent in most text editors. The first one as we have seen is the Editor has comfortable ways to enter Pāli/Sanskrit letters. Other useful functions will be explained in the following sections. Some common functions of text editors will be left out, though.
 
-\boxcaveat{Opening a large text file in Pāli Text Editor will make it considerably sluggish.}
+Note that several functions are mainly designed for Pāli. Even though the Editor can hold Sanskrit text, some functions may not work properly with Sanksrit. And some functions are designed specially for Sanskrit, such as Sandhi operations. Using these with Pāli may bring unexpected results.
+
+\boxcaveat{Opening a large text file in Text Editor will make it considerably sluggish.}
 
 \section{Find and replace}
 
-Finding a string in a text file is a basic function of an editor. In the Editor, you can use this function by pressing \texttt{Ctrl-F} or by menu Edit > Find. When you see the find dialog, simply enter a string (mind the input mode mentioned above) and a result will be highlighted. The search is incremental. Figure \ref{fig:editor-find-simple} shows a simple finding.
+Finding a string in a text file is a basic function of an editor. In the Editor, you can use this function by pressing \texttt{Ctrl-F} or by menu Edit > Find. When you see the find dialog below, simply enter a string (mind the input mode mentioned above) and a result will be highlighted. The search is incremental. Figure \ref{fig:editor-find-simple} shows a simple finding.
 
 \begin{figure}[!hbt]
 \centering
@@ -37,11 +39,10 @@ Finding a string in a text file is a basic function of an editor. In the Editor,
 
 To highlight the next or previous occurrence, if any, press the Next ({\faSix \symbol{"F105}}) or Previous ({\faSix \symbol{"F104}}) button accordingly. Using \texttt{Ctrl-G} and \texttt{Ctrl-Shift-G} is more convenient and faster.
 
-\dothis{It is faster to use \texttt{Ctrl-G} and \texttt{Ctrl-Shift-G} to go to the next and previous occurrence of the findings. You may search in just one direction because the result is circular.}
+\dothis{It is faster to use \texttt{Ctrl-G} and \texttt{Ctrl-Shift-G} to go to the next and previous occurrence of the findings. You may search in just one direction because the highlighting is circular.}
 
-There are three options to refine the search function: (1) case sensitivity, (2) whole-word matching, and (3) using regular expressions. These options can be selected by {\faSix \symbol{"F560}} menu button. Figure \ref{fig:editor-find-wholeword} shows a finding in whole-word mode. As the example shows, the whole-word matching finds the word as a separate term, not in a compound.
+There are three options to refine the search function: (1) case sensitivity, (2) whole-word matching, and (3) using regular expressions. These options can be selected by {\faSix \symbol{"F560}} menu button. Figure \ref{fig:editor-find-wholeword} shows a finding in whole-word mode. As the example shows, the whole-word matching finds the word as a separate term, not within a compound.
 
-\newpage
 \begin{figure}[!hbt]
 \centering
 \includegraphics[width=0.9\linewidth]{images/editor-find-wholeword.png}\\
@@ -54,29 +55,34 @@ To obtain the same result, you can use a regular expression, as shown in Figure 
 \begin{figure}[!hbt]
 \centering
 \includegraphics[width=0.9\linewidth]{images/editor-find-regexp.png}\\
-\caption{Finding a string in regular-expression mode}
+\caption{Finding a string with regular expression}
 \label{fig:editor-find-regexp}
 \end{figure}
 
-When you edit a text file, you may need find-and-replace functionality. You can do this in the Editor in a simple way. To open the replace widget, press \texttt{Ctrl-Shift-F} or use menu Edit > Replace. When replacing a string, you may do it all at once or an instance at a time. The tool is self-explained, so I will not show you the picture. Please try it yourselves.
+When you edit a text file, you may need find-and-replace functionality. You can do this in the Editor in a simple way. To open the replace widget, press \texttt{Ctrl-Shift-F} or use menu Edit > Replace. When replacing a string, you may do it one instance at a time or all at once. The tool is self-explained, so I will not show you the picture. Please try it yourselves.
 
 \section{Script transformation}
 
-Another handy tool in the Editor is script transformation. From a Roman text file, you can convert it to the following scripts: Devanagari, Khmer, Myanmar, Sinhala, and Thai, as shown in menu Convert to (see Figure \ref{fig:editor-convert-menu}).
+Another handy tool in the Editor is script transformation. You can convert the following scripts into one another: Devanāgarī, Khmer, Myanmar, Sinhala, and Thai. The Editor has ability to detect the source script. You can set this to automatic or a specific script by menu From, as shown in Figure \ref{fig:editor-convert-from}. The automatic detection works fine with a uniform text. If the text has more than one script in it, you should select you source script properly.
 
 \begin{figure}[!hbt]
 \centering
-\includegraphics[width=0.9\linewidth]{images/editor-convert-menu.png}\\
-\caption{Menu of script transformation}
-\label{fig:editor-convert-menu}
+\includegraphics[width=0.8\linewidth]{images/editor-convert-from.png}\\
+\caption{Options for the source script}
+\label{fig:editor-convert-from}
 \end{figure}
 
-When a script language is selected, a new window of Editor will be opened with the text in that script. Figure \ref{fig:editor-convert-thai} shows a result of Thai conversion. If an external font (see Section \ref{sect:fonts} on page \pageref{sect:fonts}) is not bundled, a fallback system font will be used (see the picture). If any font is available, you can select it by {\faSix \symbol{"F031}} menu button.
+To transform the displayed text to another script, use menu Convert to (see Figure \ref{fig:editor-convert-to}). If you want only a portion to be converted, just select that part, otherwise the while file will be processed. When a script language is selected, a new window of Editor will be opened with the result text in that script. Figure \ref{fig:editor-convert-thai} shows a result of Thai conversion. The display font will be changed accordingly (see font settings in Section \ref{sect:fonts} on page \pageref{sect:fonts}). You can see or select a new font by {\faSix \symbol{"F031}} menu button.
 
-\newpage
-\boxnote{Roman script can be converted to other scripts, but other scripts can be converted to only Roman, except Myanmar, which can only undergo one-way conversion.\\
-\hspace{5mm}Once a file is shown in a non-Roman script, you can enter or edit the file in that script with your system input method. However, the Editor is not designed to facilitate non-Roman script editing.\\
-\hspace{5mm}\caveat Myanmar script conversion is very fragile. It is likely to have unexpected results.\footnote{Even the computer I use to write the program cannot display texts in Myanmar script correctly. That is why I cannot show you a picture here.} DO NOT use the text converted to Myanmar elsewhere.
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.8\linewidth]{images/editor-convert-to.png}\\
+\caption{Menu for script transformation}
+\label{fig:editor-convert-to}
+\end{figure}
+
+\boxnote{The displayed result of the converted text may not look right in you computer, even though the conversion is correct and an applicable font is available. This may have things to do with your system or the Java runtime itself. If you are curious, copy the result text to other editors in you system.
 }
 
 \begin{figure}[!hbt]
@@ -86,33 +92,44 @@ When a script language is selected, a new window of Editor will be opened with t
 \label{fig:editor-convert-thai}
 \end{figure}
 
-\section{Other tools}
-
-Apart from the two main functions described so far, the Editor can do a lot of things concerning (Roman) Pāli, as shown in the menu (see Figure \ref{fig:editor-tools-menu}). 
-Most of them are obvious and need no explanation. You just spend your time playing around to get familiar with them.
+\newpage
+The recent improvements of the program make Roman conversion a little complicated. You have to know your target encoding (see also Section \ref{sect:roman-translit} on page \pageref{sect:roman-translit}). If you are transforming another script into Roman, it is better to check the setting in menu Options first, as shown in Figure \ref{fig:editor-roman-translit}. If you mostly use Pāli, the default Pāli Common should be expected. Otherwise, you have to set the method accordingly to your need. Note that if you are converting a Sanskrit Roman text to another script, you have to enable \emph{Roman as Sanskrit}, otherwise the text will be seen as Pāli and the conversion will be possibly not as you expected. You also have an option whether Roman numbers will be converted or not.
 
 \begin{figure}[!hbt]
 \centering
-\includegraphics[width=0.5\linewidth]{images/editor-tools-menu.png}\\
+\includegraphics[width=0.8\linewidth]{images/editor-roman-translit.png}\\
+\caption{Options for Roman transliteration}
+\label{fig:editor-roman-translit}
+\end{figure}
+
+\dothis{To convert a text to or from SLP1 encoding, you have to use menu Tools > SLP1. You can convert any script to SLP1, but only IAST can be the result of decoding.}
+
+\section{Other tools}
+
+Apart from the two main functions described so far, the Editor can do a lot of things concerning (mostly) Pāli, as shown in the menu (see Figure \ref{fig:editor-tools-menu}). You have already seen the use of Sandhi functions in Chapter \ref{chap:sktsandhi}. Other operations are obvious and need no further explanation. You just spend your time playing around to get familiar with them.
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.8\linewidth]{images/editor-tools-menu.png}\\
 \caption{Tools in the Editor}
 \label{fig:editor-tools-menu}
 \end{figure}
 
-One function I have to point out to make you aware of it is the capability to reformat CST4 texts to English style of capitalization and period insertion.\footnote{The conversion is not perfect but as close as I can do. It is nonetheless better than that of the CST4.1 program or in the CSTR collection, I think.} You may need this when you use a portion from this collection because the text's format is closer to the Devanagari source. Figure \ref{fig:editor-tools-reformat} shows a result of this reformatting.
+One function I have to point out to make you aware of is the ability to reformat CST4 texts to English style of capitalization and period insertion.\footnote{The conversion is not perfect but as close as I can do. It is nonetheless better than that of the CST4.1 program or in the CSTR collection, I think.} You may need this when you use a portion from this collection because the text's format is similar to the Devanāgarī source. Figure \ref{fig:editor-tools-reformat} shows a result of this reformatting.
 
-To conclude with one caveat, some operations are undoable (restorable to the previous state), particularly when you operate on a selected portion of text, but some are not (even with selected text). So, it is advisable to save you document before you use any tool, unless you are familiar well with the behavior of the actions. Some critical operations do not make change to the original text. They create new text in a new Editor instead. Script conversion is a marked example. The Editor also has options on wrapping text and its exit conditions. Please learn them privately.
+To conclude with one caveat, some operations are undoable (able to restore to the previous state), particularly when you operate on a selected portion of text, but some are not (even with selected text). So, it is advisable to save you document before you use any tools, unless you are familiar well with the behavior of the actions. Some critical operations do not make changes to the original text. They create new text in a new Editor instead. Script conversion is a marked example. The Editor also has options on wrapping text and its exit conditions. Please learn them from menu Options.
 
-\newpage
-\boxnote{Notes on Pāli sorting\\
-\hspace{5mm}\bullet\ To sort words, you have to put them into a list, one item per line, before you use the function.\\
-\hspace{5mm}\bullet\ Sorting in Pāli uses the algorithm applied everywhere in the program. The order is fixed in the traditional way: \pali{Niggahita} (ṃ) is treated as a consonant (not vowel), so it is placed at the last position (not the position before consonants like in most dictionaries).
+\boxnote{On sorting\\
+\hspace{5mm}\bullet\ To sort words, you have to put them into a list, one item per line, before you use the functions.\\
+\hspace{5mm}\bullet\ Sorting in Pāli uses the algorithm applied everywhere in the program. The order is fixed in the traditional way, i.e., \pali{niggahita} (ṃ) is treated as a consonant (not vowel), so it is placed at the last position (not the position before consonants like in most dictionaries).\\
+\hspace{5mm}\bullet\ Sorting in Sanskrit puts instead \pali{anusvāra} (ṃ) after vowels. So, Sanskrit order is mostly conforming to the dictionary order.
 }
 
 \begin{figure}[!hbt]
 \centering
-\includegraphics[width=0.9\linewidth]{images/editor-reformat-before.png}\\
-(a) A portion of CST4 text\\[3mm]
-\includegraphics[width=0.9\linewidth]{images/editor-reformat-after.png}\\
+\includegraphics[width=0.7\linewidth]{images/editor-reformat-before.png}\\
+(a) A portion from CST4 text\\[3mm]
+\includegraphics[width=0.7\linewidth]{images/editor-reformat-after.png}\\
 (b) After reformatted\\
 \caption{Reformatting of CST4 text}
 \label{fig:editor-tools-reformat}

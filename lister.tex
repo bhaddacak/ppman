@@ -1,8 +1,8 @@
 \chapter{Term Lister}\label{chap:lister}
 
-When I was strenuously writing my Pāli books, this tool was one of the most used. Now it has capability to handle all text collections, thanks to Lucene. In the previous versions of the program, this tool used pre-built term lists. Now it uses term lists from indexes created by Lucene Finder. This means, essentially, you have to know how to build an index from a text collection first (see Chapter \ref{chap:lucene}). Once you have an index of the collection, you can explore its term list.
+When I was strenuously writing my Pāli books, this tool was one of the most used. Now it has capability to handle all text collections, thanks to Lucene. In early versions of the program, this tool used pre-built term lists. Now it uses term/token lists from indexes created by Lucene Finder. This means, essentially, you have to know how to build an index from a text collection first (see Chapter \ref{chap:lucene}). Once you have an index of the collection, you can explore its term list.
 
-\dothis{To use Term Lister, click {\faSix \symbol{"F0C9}} button on the main tool bar, or use menu Lucene > {\faSix \symbol{"F0C9}} Term Lister. Or you can use its tab in the main window by loading the tool when needed.\\
+\dothis{To use Term Lister, click {\faSix \symbol{"F0CA}} button on the main tool bar, or use menu Lucene > {\faSix \symbol{"F0CA}} Term Lister. Or you can use its tab in the main window by loading the tool when needed.\\
 \hspace{5mm}Before using Term Lister, create an index from a text collection with Lucene Finder first.
 }
 
@@ -19,9 +19,9 @@ Figure \ref{fig:lister-empty} shows Term Lister at the first run before any tabl
 \label{fig:lister-empty}
 \end{figure}
 
-When you are satisfied with the listing options, then hit {\faSix \symbol{"F7D9}} Generate button and wait a minute (maybe shorter or longer depending on the index size). Once the creation is done, you will have the table's name in the top selector. When this table is selected, its content will show in the table area below (see Figure \ref{fig:lister-table}).
+When you are satisfied with the listing options, then hit {\faSix \symbol{"F7D9}} Generate button and wait a minute (maybe shorter or longer depending on the index's size). Once the creation is done, you will have the table's name in the top selector. When this table is selected, its content will show in the table area below (see Figure \ref{fig:lister-table}).
 
-\boxnote{The name of a lister table created is automatically set according to its source index and options. The abbreviations are intuitive and easily recognized, but you may have to get familiar with the system.}
+\boxnote{The name of a lister table created is automatically set according to its source index and options. The abbreviations are intuitive and easily recognizable, but you may have to get familiar with the system.}
 
 \dothis{After all needed lister tables are created, it is a good practice to lock the Lister database by toggling this menu:\\
 \menucommand{Lucene > {\faSix \symbol{"F09C}} Lister DB unlocked}\\
@@ -44,13 +44,13 @@ If you are not satisfied with the table created, like you may have forgotten to 
 
 The result table of Term Lister is made simple by design. It may have three or four columns depending on whether the collection have fields marked as gāthā (verse) or not. In the example above, the result of CSTR collection has four columns: (1) term, (2) total frequency, (3) gāthā frequency, and (4) term's length.
 
-What counted as `term' here is simply a token. It is not a Pāli word in strict sense. A token, in the domain of computational Pāli, is a chunk of character string without in-between separators. So, a portion with punctuation marks will be split with those marks resulting in standalone tokens. The tokenization process is done by indexing (Lucene Finder). All tokens are also normalized into lowercase letters.\footnote{Unlike the former versions of the program, the option of keeping capitalized terms is now removed. Because I found that in CSTR collection (the former CSCD), the capitalization was somewhat incomplete or not good enough for analyses. Moreover, I am likely to prefer uncapitalized text when making a text collection.}
+What counted as `term' here is simply a token. It is not a Pāli word in strict sense. A token, in the domain of computational Pāli, is a chunk of character string without in-between separators. So, a portion with punctuation marks will be split with those marks resulting in standalone tokens. The tokenization process is done by indexing (Lucene Finder). All tokens are also normalized into lowercase letters.\footnote{Unlike early versions of the program, the option of keeping capitalized terms is now removed. Because I found that in CSTR collection (the former CSCD) the capitalization was somewhat incomplete or not good enough for analyses. Moreover, I prefer making and using uncapitalized text collections.}
 
 The term's total frequency is the number of occurrences found totally in the documents indexed, including in verse (gāthā) form. The gāthā frequency is the term's occurrences present in verses (if gāthā's related fields available). The gāthā frequency can give you some insight about the word's uses. For example, if a term has high gāthā frequency relative to the total frequency (say, 90\%), it may be a remnant of the past in an archaic form.
 
 The length of term in the last column is Pāli-sensitive, meaning \pali{th}, for example, has 1 character long. So, you see \pali{tattha} in the list has length = 5.
 
-By default, the result is retrieved only 500 rows, ordered by top frequencies. This can quicken the starting time. You can set the number of maximum rows by a drop-down option in the tool bar, ranging from 50 to 1,000,000 rows. The less you select the faster you get the result.
+By default, the result is retrieved only 500 rows, ordered by top frequencies. This can quicken the starting time. You can set the number of maximum rows by the last drop-down option in the tool bar, ranging from 50 to 1,000,000 rows. The less you select the faster you get the result.
 
 The table can be sorted by a specific column by clicking the column header. But remember that the sorting is done only on the existing data limited by the maximum rows chosen. It does not retrieve new data.
 
@@ -77,18 +77,19 @@ Now you can apply the options mentioned to find the longest term in a collection
 \label{fig:lister-toplength}
 \end{figure}
 
-If you choose the full frequency range (\textbf{>=\,1}) like me, you have to wait a little long.\footnote{It is processed under 10 seconds each step in my computer, pretty fast in fact. It is long because the result does not come up right away.} It will be faster if you choose \textbf{=\,1} instead (very long terms are supposed to appear once), because less data will be processed.
+If you choose the full frequency range (\textbf{>=\,1}) like me, you have to wait for a big while (around 10 seconds in my old computer). It will be faster if you choose \textbf{=\,1} instead (very long terms are supposed to appear once), because less data will be processed.
 
-You can use a word in the result table or send it to other tools by right-clicking the row you want to open its context menu. Then four choices are available as follows (see their exact wording in Figure \ref{fig:lister-contextmenu}):
+You can use a word in the result table or send it to other tools by right-clicking the row you want to open its context menu. Then five choices are available as follows (see their exact wording in Figure \ref{fig:lister-contextmenu}):
 
 \begin{compactenum}[(1)]
 \item To copy the word to the system's clipboard
-\item To send the word to the main Dictionaries tab
+\item To send the word to the main Pāli Dictionaries tab
+\item To send the word to the main Sanskrit Dictionaries tab
 \item To send the word to the main Document Finder tab
 \item To send the word to the main Lucene Finder tab
 \end{compactenum}
 
-\dothis{To copy a term in the lister result, simply drag and drop it to a program's Text Editor opened. Also try dropping elsewhere.\\
+\dothis{To make use of a term in the lister result, simply drag and drop it to a program's Text Editor opened. Also try dropping elsewhere.\\
 \hspace{5mm}To copy the term outside the program, it is better to put it into the system's clipboard first (using context menu).
 }
 
@@ -108,7 +109,7 @@ Term Lister is armed with a powerful search tool that can filter the results in 
 
 \subsection{Simple filtering}
 
-The simplest way to filter the results is selecting by the starting letters. When you enter a letter, terms starting with that letter will show up (see Figure \ref{fig:lister-filter-simple}). Entering next characters will refine the filtering further.
+The simplest way to filter the results is selecting by starting letters. When you enter a letter, terms starting with that letter will show up (see Figure \ref{fig:lister-filter-simple}). Entering next characters will refine the filtering further.
 
 \begin{figure}[!hbt]
 \centering
@@ -119,7 +120,7 @@ The simplest way to filter the results is selecting by the starting letters. Whe
 
 \subsection{Filtering by wildcards}
 
-Here, the wildcards, ? (any one character) and * (any number of characters including none), also have their uses, and they are quite helpful if you can imagine how to put them together. See Figure \ref{fig:lister-filter-wildcards} for example.
+Here, the wildcards, ? (any one character) and * (any number of characters including none), also have their uses, and they are quite helpful if you can figure out how to put them together. See Figure \ref{fig:lister-filter-wildcards} for example.
 
 \begin{figure}[!hbt]
 \centering
@@ -130,7 +131,7 @@ Here, the wildcards, ? (any one character) and * (any number of characters inclu
 
 \subsection{Filtering by regular expressions}
 
-If you know how to use regular expressions, you can gain a lot of benefits from this mode of filtering. Figure \ref{fig:lister-filter-regexp} shows an example of filtering by an regular expression.\footnote{This is a hit-and-run example to find short words that use \pali{t} or \pali{ṭ} in the second syllable, doubled or not, and followed by one vowel. You may not have a chance to use this pattern, but it tells you a lot about how regular expressions work.} For more information about the syntax, see Chapter \ref{chap:regexp}.
+If you know how to use regular expressions, you can gain a lot of benefits from this mode of filtering. Figure \ref{fig:lister-filter-regexp} shows an example of filtering by a regular expression.\footnote{This is a hit-and-run example to find short words that use \pali{t} or \pali{ṭ} in the second syllable, doubled or not, preceded by \pali{a} and followed by one vowel. You may not have a chance to use this pattern, but it tells you a lot about how regular expression works.} For more information about the syntax, see Chapter \ref{chap:regexp}.
 
 \begin{figure}[!hbt]
 \centering
@@ -143,7 +144,7 @@ If you know how to use regular expressions, you can gain a lot of benefits from 
 
 The last mode of filtering is a kind of fun, but you may not have opportunities to use this often because Pāli prosodic composition is unnecessary nowadays.\footnote{Scholars may see that the topic is too advanced that very few people can master it. Traditional teachers may see this is for only exceptional ones. I see this as an intellectual toy.} When this mode is chosen, the text input symbol will change to musical notes (\texttt{♩♩♪}). Now symbols of meter group, described in Chapter \ref{chap:prosody}, have their corresponding meaning.
 
-The symbols are (case-sensitive) \texttt{1, 2, 4, l, g, n, s, j, b, m, N, S, J, Y, B, R, T, M, } and \texttt{L}.\footnote{The weight \texttt{6} and \texttt{8} are excluded from the process because they are difficult to implement. You have to be specific. For example, using \texttt{24} or \texttt{42} for \texttt{6} and use \texttt{44} for \texttt{8}.} Be careful with \texttt{2} here. It means either \texttt{g} or \texttt{ll}. Figure \ref{fig:lister-filter-meter} (a) shows the result of \texttt{gggl} with 500 terms retrieved, comparing to Figure (b), which uses the input \texttt{2221} instead. So, my suggestion is that always use \texttt{g} (not \texttt{2}) when you search with raw meter (\texttt{1} and \texttt{l} bring the same result).
+The symbols are (case-sensitive) \texttt{1, 2, 4, l, g, n, s, j, b, m, N, S, J, Y, B, R, T, M, } and \texttt{L}.\footnote{The weight \texttt{6} and \texttt{8} are excluded from the process because they are difficult to implement. You have to be specific. For example, using \texttt{24} or \texttt{42} for \texttt{6} and use \texttt{44} for \texttt{8}.} Be careful with \texttt{2} here. It means either \texttt{g} or \texttt{ll}. Figure \ref{fig:lister-filter-meter} (a) shows the result of \texttt{gggl} with 500 terms retrieved, comparing to figure (b), which uses the input \texttt{2221} instead. So, my suggestion is that always use \texttt{g} (not \texttt{2}) when you search with raw meter (\texttt{1} and \texttt{l} bring the same result).
 
 \begin{figure}[!hbt]
 \centering
@@ -151,12 +152,13 @@ The symbols are (case-sensitive) \texttt{1, 2, 4, l, g, n, s, j, b, m, N, S, J, 
 (a) Meter filtering by `gggl'\\[3mm]
 \includegraphics[width=0.9\linewidth]{images/lister-filter-2221.png}\\
 (b) Meter filtering by `2221'\\
+\caption{Filtering by prosodic meter}
 \label{fig:lister-filter-meter}
 \end{figure}
 
 \section{Summary by grouping}
 
-The last feature we should know is \emph{grouping}. This can bring us insightful statistical information. Pāli students may not use this feature often, but it can be useful for textual analyzers or redactors (to find defects, for example). Grouping is an action upon the retrieved data. It groups terms by similarity. For example, you can see that how many terms starting with each letter by setting the start number to 1 (see Figure \ref{fig:lister-grouping-start}). There are some limitations to be aware of. First, characters here are not Pāli-sensitive. This means under the group of `\pali{p-}', for example, terms starting with `\pali{ph-}' are included. And Second, the operation is done upon the existing data, so you have to select a proper number of maximum rows.
+The last feature we should know is \emph{grouping}. This can bring us insightfully statistical information. Pāli students may not use this feature often, but it can be useful for textual analyzers or redactors (to find defects, for example). Grouping is an action upon the retrieved data. It groups terms by similarity. For example, you can see that how many terms starting with each letter by setting the start number to 1 (see Figure \ref{fig:lister-grouping-start}). There are some limitations to be aware of. First, characters here are not Pāli-sensitive. This means under the group of `\pali{p-}', for example, terms starting with `\pali{ph-}' are included. And Second, the operation is done upon the existing data, so you have to select a proper number of maximum rows.
 
 \begin{figure}[!hbt]
 \centering
@@ -170,6 +172,6 @@ Similarly, you can see that how many terms ending with the same letters by setti
 \begin{figure}[!hbt]
 \centering
 \includegraphics[width=0.9\linewidth]{images/lister-grouping-end.png}\\
-\caption{Grouping by the last 2 letters}
+\caption{Grouping by the last two letters}
 \label{fig:lister-grouping-end}
 \end{figure}

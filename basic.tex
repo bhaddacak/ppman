@@ -1,14 +1,14 @@
 \chapter{Basic operations and settings}\label{chap:basic}
 
-Now, I suppose that the reader can run the program successfully and get the first window. Formerly, in the first version of \textsc{Pāli\,Platform}, all working areas are integrated into one window. From version 2 onward, the program has multiple windows. So, you will see many windows doing various jobs. There are two kinds of window: singleton and multi-instance. The former has only one instance in the program's lifetime (About dialog, for example), whereas the later can have multiple instances (Dictionaries window, for example). Let us start with the main window.
+Now, I suppose that the reader can run the program successfully and get the first window already. Formerly, in the first version of \textsc{Pāli\,Platform}, all working areas are integrated into one window. From version 2 onward, the program has multiple windows. So, you will see many windows doing various jobs. There are two kinds of window: singleton and multi-instance. The former has only one instance in the program's lifetime (About dialog, for example), whereas the later can have multiple instances (Dictionaries window, for example). Let us start with the main window.
 
 \section{Main window}
 
 The main window is a mandatory singleton. You only have one main window when you run the program. And you should not start the program multiple times from the same directory. It seems you cannot do so because of the conflict of shared resources.
 
-There are three parts in the main window: the menu bar, the main tool bar, and tabs of some working areas (see Figure \ref{fig:main-window}). The first two parts are familiar to most computer users. Every button in the tool bar has its counterpart in the menu. They are selected to show here because they are used a lot.
+There are three parts in the main window: the menu bar, the main tool bar, and tabs of some working areas (see Figure \ref{fig:main-window}). The first two parts are familiar to most computer users. Every button in the tool bar has its counterpart in the menu. They are selected to show here because they are frequently used.
 
-The third part is the big area below those two. There are six fixed tabs of the most used tools: TOC Tree, Document Finder, Lucene Finder, Term Lister, Dictionaries, and Editor. These tabs are always there, no more no less. Each tab can be opened as new multiple windows using the menu or the tool bar. When a new window is created, it works separately from the main tab area. For referencing, therefore, we will call these six tabs as the main TOC Tree, the main Document Finder, and so on.
+The third part is the big area below those two. There are seven fixed tabs of the most used tools: TOC Tree, Document Finder, Lucene Finder, Term Lister, Pāli Dictionaries, Sanskrit Dictionaries, and Editor. These tabs are always there, no more no less. Each tab can be opened as new multiple windows using the menu or the tool bar. When a new window is created, it works separately from the main tab area. For referencing, therefore, we will call these seven tabs as the main TOC Tree, the main Document Finder, and so on.
 
 On the first start, except the Editor, the content of these tabs are not loaded. If you want to use one of them, hit the Load button in each tab.
 
@@ -30,10 +30,10 @@ Each button in the common tool bar, has the same function in all windows (but it
 \caption{Buttons of the common tool bar}
 \label{tab:common-toolbar}
 \bigskip
-\begin{tabular}{ll} \toprule
+\begin{tabular}{cl} \toprule
 {\faSix \symbol{"F186}} & Switch between light and dark theme \\
 {\faSix \symbol{"F056}} & Decrease font size \\
-{\faSix \symbol{"F021}} & Reset font to normal size \\
+100 & Set to a specific font size (displayed in \%) \\
 {\faSix \symbol{"F055}} & Increase font size \\
 {\faSix \symbol{"F031}} & Change font \\
 {\faSix \symbol{"F56D}} & Save data as text \\
@@ -44,61 +44,187 @@ Each button in the common tool bar, has the same function in all windows (but it
 
 When you change theme by the tool bar, it changes only that instance. If you click {\faSix \symbol{"F186}} button in the main tabs, the whole main window is changed. This change is not persistent. If you want permanent theme change, use menu Options > Global\,theme instead. Other buttons are intuitively understandable, but read more about fonts in its section below. Another common button you can see here and there is help ({\faSix \symbol{"F059}}) button. When clicked, the related help of that part will show up.
 
-\section{Fonts and problems}\label{sect:fonts}
+\section{Fonts}\label{sect:fonts}
 
 The users will not feel the significance of fonts and their problems until they read or edit a Pāli text. However, you should know this before you find out yourself that things do not always go as you expect.
 
-Fonts used in the program have two kinds: embedded and external. The former has nothing to do with the users. You may be able to select one of them, but they cannot be changed or removed. This includes \emph{DejaVu}\footnote{\url{dejavu-fonts.github.io}} font family (Serif, Sans Serif, and Mono space) and icon fonts. In \textsc{Pāli\,Platform\,3}, \emph{Paduak\,PP}\footnote{The original Paduak font is taken from \url{fonts.google.com/specimen/Padauk}.} font (modified) is also embedded for using with Myanmar script. So, when applicable, you can always choose either \emph{DejaVu Serif} or \emph{DejaVu Sans} or \emph{DejaVu Sans Mono}. These fonts should have no problem in most running environment.
+Fonts used in the program have two kinds: embedded and external. The former has nothing to do with the users. You may be able to select one of them, but they cannot be changed or removed. This includes \emph{DejaVu}\footnote{\url{dejavu-fonts.github.io}} font family (Serif, Sans Serif, and Mono space) and icon fonts. So, when applicable, you can always choose either \emph{DejaVu Serif} or \emph{DejaVu Sans} or \emph{DejaVu Sans Mono}. These fonts should have no problem in most running environments.
 
-Problems mostly come from other scripts than Roman. That is why external fonts are needed. The idea is simple: put your font files (TTF) in folder \texttt{fonts} at the program's root and restart the program. You should add two files: one for regular face, another for bold face. If only regular face is added, you will see only regular text, no bold, in Pāli documents.
+Problems mostly come from other scripts than Roman. That is why external fonts are needed. The operation is simple: put your font files (TTF) in folder \texttt{fonts} at the program's root and restart the program. You should add two files: one for regular face, another for bold face. If only regular face is added, you will see only regular text, no bold, in Pāli/Sanskrit documents.
 
-Not every font is usable, however. For displaying Pāli Roman, you must have a Unicode font with \emph{Latin Extended Additional} block (not every Unicode font has it).
+Not every font is usable, however. For displaying Pāli/Sanskrit Roman, you must have a Unicode font with \emph{Latin Extended Additional} block (not every Unicode font has it).
 
-For other scripts, I only added \emph{Noto\,Sans\,Myanmar\,PP}\footnote{The original Noto fonts can be found at \url{github.com/notofonts/noto-fonts}.} (modified) font for an alternative use with Myanmar script. For other scripts, except Myanmar, you have to find a suitable font yourselves (or leave it to the system, if you are lucky). Here is a warning: Not all fonts work as expected. Some fonts may look different in different environment, and some may look weird in certain machines.
+For other scripts, here are usable fonts added in the bundle:
 
-When problems related to external fonts occur, one solution you can do is just delete the external fonts. If your system has proper fonts installed, you can delete fonts provided in the font folder (or move them away). Then, the program will use a system font instead as a fallback, currently set to \emph{Sans}.
+\begin{compactitem}
+\item \emph{Free Serif}\footnote{GNU free font} able to display Devanāgarī, Sinhala, and Thai script
+\item \emph{Padauk}\footnote{\url{github.com/silnrsi/font-padauk}} used for Myanmar script
+\item \emph{Noto Sans Myanmar}\footnote{\url{github.com/notofonts/myanmar}}
+\item \emph{Noto Serif Khmer}\footnote{\url{github.com/notofonts/khmer}}
+\end{compactitem}
 
-\boxnote{In \textsc{Pāli\,Platform\,3}, Myanmar script is treated so differently that it needs a custom font to show. Other Myanmar fonts that are not provided by the program will fail to display the text correctly.\\
-\hspace{5mm}This is mostly about a Java technical problem. Due to the lack of a firm standard, Java cannot handle Myanmar characters correctly. To solve this problem ad hoc, I have to program the Myanmar script conversion manually to correct the display and use a modified font.\\
-\hspace{5mm}Yet the Myanmar display is far from perfect. A new solution may come up in a next version of the program. Now it is just enough for students to learn Myanmar script by the program.\\
-\hspace{5mm}\caveat Do not copy a portion of text in Myanmar script and paste it in another program.
-}
+If you have your favorite font files, you can add them likewise. But be aware that not all fonts work as expected. Some fonts may look different in different environments, and some may look weird in certain machines.
 
-\section{Pāli input}\label{sect:pali-input}
-
-Typing in Pāli characters is used throughout the program. So, it is essential that the users have to learn the input method. It is easy, but needs some familiarity. In text fields and text areas that expect Pāli Roman characters, there are 3 modes of input indicated by their symbol: Regular mode (a\blacktriangleright a), Unused-characters mode (x\blacktriangleright ā), and Composite mode (ā\blacktriangleright ā). These three modes can be switched circularly by clicking the symbol button or pressing \texttt{Ctrl-Space}. Pāli input also has detailed settings in Settings window, invoked by menu Options > {\faSix \symbol{"F013}} Settings or {\faSix \symbol{"F013}} button in the main tool bar.
+From \textsc{Pāli\,Platform\,4} onward, you may select to use a system font instead, but only a generic one, i.e., serif, sans-serif, or monospace. The exact fonts mapped by those generic names depend on your OS settings. Figure \ref{fig:font-selection} shows a selection of \emph{serif} generic font.\footnote{Because my Linux maps \emph{serif} to \emph{DejaVu Serif}, the display happens to be the same. However, the underlying mechanism is different. When \emph{serif} is selected, the related system font is used. When \emph{DejaVu Serif} is selected, its embedded file is used.}
 
 \begin{figure}[!hbt]
 \centering
-\includegraphics[width=0.9\linewidth]{images/settings-input.png}\\
-\caption{Settings for Pāli input}
-\label{fig:settings-input}
+\includegraphics[width=0.9\linewidth]{images/font-selection.png}\\
+\caption{A generic font selected}
+\label{fig:font-selection}
+\end{figure}
+
+To make the use of various fonts more controllable, now you can set default fonts in the Settings (invoked by menu Options > {\faSix \symbol{"F013}} Settings or {\faSix \symbol{"F013}} button in the main tool bar). In the tab named \emph{Fonts}, there are options to select preferred fonts in the lower part (see Figure \ref{fig:settings-fonts}).
+
+Text viewers and similar tools are script-sensitive. They know exactly what script is being displayed. But at a certain state of some tools, like Text Editor, the script is undetermined. That is why we have the \emph{Unspecified/Unknown} option here.
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.9\linewidth]{images/settings-fonts.png}\\
+\caption{Settings of fonts}
+\label{fig:settings-fonts}
+\end{figure}
+
+The upper part of the Settings is about default font sizes (in percent). There are three groups of tools that can be set separately: text viewers, dictionaries, and the rest. This can make the users have more control over the tools they normally use.
+
+\boxnote{In previous versions of \textsc{Pāli\,Platform}, Myanmar script causes some complication and difficulty. Now most problems are solved with the new transliterating engine. So, a text portion in Myanmar script can be copied to and pasted from other applications.\\
+\hspace{5mm}Still, the Myanmar display is far from universally perfect. Different fonts may render the display differently. Moreover, different systems (or different versions of the same system) may display the same fonts differently. That is why two Myanmar fonts are shipped with the program. If they do not work, try another one yourself.
+}
+
+\section{Text input using keyboard}\label{sect:keyboard-input}
+
+Typing in Pāli/Sanskrit characters is used throughout the program. So, it is essential that the users have to learn the input method. It is easy, but needs some familiarity. In Pāli related tools, there are four modes of input indicated by their symbol: Regular or normal mode (a\blacktriangleright a), Unused-characters mode (x\blacktriangleright ā), Composite mode (ā\blacktriangleright ā), and SLP1 mode (\texttt{SLP}). In Sanskrit related tools, the Unused-characters mode is absent.
+
+These four modes can be switched circularly by clicking the symbol button or pressing \texttt{Ctrl-Space}. The default mode of input can be set in Keyboard Settings (shown in Figure \ref{fig:keyboard-default}).\footnote{All these modes take time to sink in. You have to play with them. To ease the understanding, I have made a video on keyboard input (and other topics) uploaded in YouTube. See \url{www.youtube.com/@Bhaddacak}.}
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.9\linewidth]{images/keyboard-default.png}\\
+\caption{Default mode of input for Pāli and Sanskrit}
+\label{fig:keyboard-default}
 \end{figure}
 
 \fbox{a\blacktriangleright a} \emph{Regular mode} is the normal state of your computer. As the symbol says, when you type `a' you simply get `a'. You can type in English or other languages supported by your system in this mode.
 
-\fbox{x\blacktriangleright ā} \emph{Unused-characters mode} is a unique and innovative method. This mode utilizes unused English characters for some Pāli letters with diacritics. Here are the program's default mapping: x~=~ā, X~=~ī, w~=~ṃ, W~=~ū, F~=~ṅ, f~=~ñ, q~=~ṭ, Q~=~ḍ, z~=~ṇ, Z~=~ḷ. That is why the symbol says thus: you get `ā' when you hit `x', for example. This mode includes two special keys for making a character under cursor uppercase (<) and lowercase (>). All these keys can be set in Settings (see Figure \ref{fig:settings-input}).
+\fbox{x\blacktriangleright ā} \emph{Unused-characters mode} is a unique and innovative method. This mode utilizes unused English characters for some Pāli letters with diacritics. Here are the program's default mapping: x~=~ā, X~=~ī, w~=~ṃ, W~=~ū, f~=~ñ, F~=~ṅ, q~=~ṭ, Q~=~ḍ, z~=~ṇ, Z~=~ḷ. That is why the symbol says thus: you get `ā' when you hit `x', for example. This mode includes two special keys for making a character under cursor uppercase (<) and lowercase (>). All these keys can be set in keyboard Settings (see Figure \ref{fig:keyboard-unused}).
 
-\fbox{ā\blacktriangleright ā} \emph{Composite mode} is the most intuitive way to enter a diacritic mark. Here are the program's presets: $\sim$~=~tilde, -~=~macron, '~=~dot above, .~=~dot below, "~=~acute (see also Figure \ref{fig:settings-input}). For example, when you need `ā' you type `a' followed by `-' immediately. The mapping can be set otherwise in the program's settings. This mode is a little more expensive than the previous one. You need two strokes rather than one, but you do not need to remember the character mapping.
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.9\linewidth]{images/keyboard-unused.png}\\
+\caption{Key mapping in Unused-characters mode}
+\label{fig:keyboard-unused}
+\end{figure}
 
-The users can set their preferred method as the default in the program's settings (see Figure \ref{fig:settings-input}).
+\fbox{ā\blacktriangleright ā} \emph{Composite mode} is the most intuitive way to enter a diacritic mark. Here are the program's presets: $\sim$~=~tilde, -~=~macron, \_~=~line below, "~=~dot above, .~=~dot below, '~=~acute, \`{}~=~avagraha\footnote{Only this symbol will be converted to Devanāgarī avagraha, whereas a single quote or its equivalent will not.} (see Figure \ref{fig:keyboard-composite}). For example, when you need `ā' you type `a' followed by `-' immediately. The mapping can be set otherwise in the settings. This mode is a little more expensive than the previous one. You need two strokes rather than one, but you do not need to remember the character mapping.
 
-\boxnote{All user's preferences, such as the global theme, and those in Settings, are saved in an external property file, named \texttt{PaliPlatform3.properties}. This file usually exists in the program's root. If you mess up with the settings, you can return to the original state by just deleting the property file and restart the program.}
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.9\linewidth]{images/keyboard-composite.png}\\
+\caption{Key mapping in Composite mode}
+\label{fig:keyboard-composite}
+\end{figure}
+
+\fbox{\texttt{SLP}} \emph{SLP1 mode}\footnote{SLP1 stands for Sanskrit Library Phonetic basic encoding scheme. It is widely used in Sanskrit digital documents because of its simplicity. Most Sanskrit dictionaries available online are encoded in SLP1.} is a quick way to enter Sanskrit characters. It can be used to enter Devanāgarī letters, as well as Sanskrit Roman (IAST) and Pāli Roman (see its settings in Figure \ref{fig:keyboard-slp1}). When typing Devanāgarī, you have to use with Virāma key to enter a conjunct. The character mapping of SLP1 is shown in Figure \ref{fig:slp1-table}.
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.9\linewidth]{images/keyboard-slp1.png}\\
+\caption{Settings for SLP1 mode}
+\label{fig:keyboard-slp1}
+\end{figure}
+
+In Roman typing, IAST\footnote{International Alphabet of Sanskrit Transliteration, see the next section below.} and Pāli input have slightly different mapping. IAST treats \emph{ḷ} as a vowel. In Pāli, we use this character as a consonant (it is equivalent to \emph{\b{l}} in IAST). With SLP1 mapping, when you hit `x' in both mode, you get \emph{ḷ}. But when `L' is hit, you get \emph{\b{l}} in IAST but \emph{ḷ} in Pāli. The difference is summarized in Table \ref{tab:iast-vs-pali}. For Pāli learners, this matter is negligible. But for Sanskrit, you should be aware and careful.
+
+\begin{table}[!hbt]
+\centering
+\caption{Difference between IAST and Pāli}
+\label{tab:iast-vs-pali}
+\bigskip
+\begin{tabular}{@{}cccl@{}} \toprule
+\bfseries SLP1 & \bfseries IAST & \bfseries Pāli & \bfseries Note \\
+\midrule
+x & ḷ & ḷ & unused vowel in Pāli but applicable \\
+L & \b{l} & ḷ & unused consonant in Sanskrit \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.9\linewidth]{images/slp1-table.png}\\
+\caption{Character mapping of SLP1}
+\label{fig:slp1-table}
+\end{figure}
+
+\section{Roman transliteration}\label{sect:roman-translit}
+
+When the program has Sanskrit support, we have to take Roman transliteration seriously. This involves some established standards inevitably. We have met IAST and SLP1 previously. Those two ways of encoding can be seen as standards. In addition, the program also supports ISO 15919, Pāli common (a modified version of IAST), and Least Contamination.\footnote{Pāli common is not exactly a name of standard, but it is the most common way to use with Roman Pāli nowadays. It is really close to IAST with some difference described above. Least Contamination is not a standard. It is my invention to keep 100\% reversibility between Devanāgarī and Roman. For the standards like ISO 15919 and IAST, please find their technical information from the Internet.} When you work with textual transliterations, you have to take these into consideration.
+
+To illustrate this in a quick way, you can use the program's Text Editor with test data loaded. To load the test data, go to menu Options in the Editor, then select \emph{Load test data}. The data is in Devanāgarī. We will focus only on the upper part which shows all characters and symbols. From here you can convert the data into Roman with menu \emph{Convert to}. But be aware of the transliteration option as shown in Figure \ref{fig:editor-translit-options}.
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.9\linewidth]{images/editor-translit-options.png}\\
+\caption{Options of Roman transliteration in Editor}
+\label{fig:editor-translit-options}
+\end{figure}
+
+Now you can try converting the test data to Roman with different options and comparing the results. The results of mine are shown in Figure \ref{fig:roman-translit}.\footnote{To convert to SLP1, use menu Tools > SLP1 > Encode SLP1 in the Editor. The result is not shown here.} There is another way to do the comparison using Sanskrit Letters (see Chapter \ref{chap:sktletters}).
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=1.0\linewidth]{images/roman-translit.png}\\
+\caption{Comparison of Roman transliterations}
+\label{fig:roman-translit}
+\end{figure}
+
+\newpage
+\boxnote{All user's preferences, such as the global theme, and those in Settings, are saved in an external property file, named \texttt{PaliPlatform4.properties}. This file usually exists in the program's root. If you mess up with the settings, you can return to the original state by just deleting the property file and restart the program. Be aware that doing so also deletes the update information of the latest patch and some statistical information, but it does not affect the program.}
+
+\section{Semi-automatic updating}\label{sect:updating}
+
+The program has an updating facility, but it does not work automatically. There are some technical details the users have to know. First, the program has to download information, such as URLs of online resources, when the Internet is available. See the box below.
+
+\boxnote{When the program is started with the Internet available, information such as URL data used for downloading is fetched and saved. Technically, the file is named \texttt{pp4XXurls.properties}.\footnote{From version 4.2.0 onward, sub-version number is present as \emph{XX}. For example, in the current version the file is \texttt{pp402urls.properties}.} If this file already exists, a newer one is not downloaded. To make the URL data up-to-date, you have to use this menu command:\\
+\menucommand{File > {\faSix \symbol{"F021}} Update online info}
+}
+
+The program does not know automatically whether a new patch is available. The users have to update the online info first, as described above. Then open Patch Installer by menu File > {\faSix \symbol{"F381}} Patch Installer. If there is a new patch, you will see the patch's information when clicking the button {\faSix \symbol{"F05A}}, as shown in Figure \ref{fig:patch-installer}.
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.6\linewidth]{images/patch-installer.png}\\
+\caption{Patch information in Patch Installer}
+\label{fig:patch-installer}
+\end{figure}
+
+When you have an updating task to download, just click Start button and wait until it is done. Make sure that the option \emph{Install/unpack} is selected. When the updating has finished, the program will close itself, if not you have to close it now. There are conditions affecting the restarting process described in the box below.
+
+\newpage
+\boxnote{Conditions to be considered when updating\\
+\hspace{5mm}\bullet\ In Windows, when the program terminates, you just restart the program by your desktop shortcut. For knowledgeable users, do NOT start the program with \texttt{run.cmd} after updating, use \texttt{launch.cmd} instead. Afterward, you can start the program as usual.\\
+\hspace{5mm}\bullet\ In macOS and Linux, if the program does not restart itself, start the program with a terminal once using \texttt{launch.sh}.\\
+\hspace{5mm}\bullet\ It is advisable that in macOS or Linux, when you intend to update the program, start it first with a terminal by using either \texttt{run.sh} or \texttt{launch.sh}. By this, the program will restart itself successfully when done.
+}
+
+After the patch is installed successfully, when you open the About window, you will see the update information in the text area.\footnote{Note that this information will be gone if you delete the program's property file (\texttt{PaliPlatform4.properties}) to reset the program's settings, but doing so does not affect the program's functionality. We just lose some trivial information.}
 
 \section{Minor concerns}
 
 There are some miscellaneous points that are worth mentioning here, before you make a real use of the program.
 
-\paragraph{(1) Drag-and-drop.} The program supports the drag-and-drop action in various places. For example, a file can be dragged from the system's explorer and drop into the program's editor, or a text portion can be dragged from a system's editor and drop into a Dictionaries window.
+\paragraph{(1) Drag-and-drop.} The program supports drag-and-drop actions in various places. For example, a file can be dragged from the system's explorer and dropped into the program's editor, or a text portion can be dragged from a system's editor and dropped into a Dictionaries window.
 
 There are many possibilities of drag-and-drop. Some look obvious. Some seem likely applicable, but it cannot be done (because of a technical limitation). It will be too fussy to list all of them here. Learning by using is better. If any drag-and-drop action does not work, using copy-and-paste, if applicable, can achieve the same goal in most cases.
 
 \paragraph{(2) Context menus.} Context menus are menus that pop up when you right-click (or left-click in some places) at a certain object. These menus are context-dependent. You have to test and learn by yourself. In many cases, context menus provide more solid functions, than drag-and-drop does.
 
-\paragraph{(3) Sortable tables.} There are a number of tabular results produced by the program. Most of those tables are sortable. It can be done by clicking on the table header of the target columns. The mode of sorting is changed circularly: ascending, descending, and unsorted. A triangle in the header will show up accordingly. Some tables, to which sorting makes no sense, cannot be sorted, though. There are some things to keep in mind. First, most tables are already sorted by a pre-selected criterion. Using a custom sort can disrupt the preset order, in the way that mode of sorting may be shown incorrectly. And second, the sorting is done only on the existing data in the tables. No new retrieval or calculation is applied.
+\paragraph{(3) Sortable tables.} There are a number of tabular results produced by the program. Most of these tables are sortable. It can be done by clicking on the table header of the target columns. The mode of sorting is changed circularly: ascending, descending, and unsorted. A triangle in the header will show up accordingly. Some tables, to which sorting makes no sense, cannot be sorted, though. There are some things to keep in mind. First, most tables are already sorted by a pre-selected criterion. Using a custom sort can disrupt the preset order, in the way that mode of sorting may be shown incorrectly. And second, the sorting is done only on the existing data in the tables. No new retrieval or calculation is applied.
 
 \paragraph{(4) Tooltips.} When you are stuck in the using, try {\faSix \symbol{"F059}} button first. If the help is not available, try reading tooltips by hovering the mouse over an unknown button. Tooltips can be seen in other places as well, such as in a list or table that has truncated data entries.
 
-\paragraph{(5) Databases locked and unlocked.} In \textsc{Pāli\,Platform\,3}, all data\-bases used are created in place. Currently there are three of them: (1) \emph{Dict} DB, for the bundled dictionaries; (2) \emph{PP-DPD} DB, an optimization for DPD data; and (3) \emph{Lister} DB, for Term Lister.
+\paragraph{(5) Databases locked and unlocked.} All databases used are created in place. Currently there are five of them: (1) \emph{Dict} DB, for the bundled Pāli dictionaries; (2) \emph{PP-DPD} DB, an optimization for DPD data; (3) \emph{Cone} DB, only for Margaret Cone's Dictionary; (4) \emph{SktDict} DB, for Sanskrit dictionaries; and (5) \emph{Lister} DB, used by Term Lister.
 
-In the first run, all these databases will be created and set to writable waiting for data to be inserted. This is the \emph{unlocked} state ({\faSix \symbol{"F09C}}). You can see the state in the corresponding menus. With this unlocked state, at least in Linux, when the program is finished, it makes the exit linger for a while. To make the exit faster, change the state of databases to \emph{locked} ({\faSix \symbol{"F023}}) instead. This should be done when all data have been created and no more creation is needed. You have to lock all three databases to see the effect. When new data are needed, you can unlock them at any time.
+In the first run, all these databases will be created and set to writable waiting for data to be inserted (except \emph{SktDict} is created on demand, and \emph{Cone} has to be installed manually and it is automatically locked). This is the \emph{unlocked} state ({\faSix \symbol{"F09C}}). You can see the state in the corresponding menus. With this unlocked state, at least in Linux, when the program is finished, it makes the exit linger for a while. To make the exit faster, change the state of databases to \emph{locked} ({\faSix \symbol{"F023}}) instead. This should be done when all data have been created and no more creation is needed. You have to lock all databases to see the effect. When new data are needed, you can unlock them at any time.
+
+\paragraph{(6) Unfinished UI construction.} I have found this several times in my Linux environments, but I am not sure in other platforms. When the program is shown up for the first time and you load a working tab or open a window immediately, some UI components will not completely display, particularly in a mouse-hovering state. The problem is the UI components need time to create after the first launch. To fix this problem, after you start the program, you should wait fifteen seconds or so before using the program.
